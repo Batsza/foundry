@@ -1,3 +1,4 @@
+/*
 public class Cast extends Project {
     private int idCast;
     private String status;
@@ -12,3 +13,4 @@ public class Cast extends Project {
 
     }
 }
+*/

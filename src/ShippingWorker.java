@@ -1,3 +1,4 @@
+/*
 public class ShippingWorker extends Worker {
     public orderTransport(){
 
@@ -7,3 +8,5 @@ public class ShippingWorker extends Worker {
 
     }
 }
+
+ */

@@ -1,4 +1,4 @@
-
+/*
 public class Project {
     private int idProject;
     private String projectDetails;
@@ -54,4 +54,4 @@ public class Project {
 
     }
 }
-
+*/

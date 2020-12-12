@@ -1,6 +1,9 @@
-import java.util.Scanner;
+import javax.swing.*;
+import java.util.*;
+
 public class Main {
     public static void main (String[] args) {
+        /*
         Worker w = new Worker();
         Scanner sc = new Scanner(System.in);
         System.out.println("Podaj ID: ");
@@ -18,5 +21,9 @@ public class Main {
         System.out.println(w.getCast());
         System.out.println(w.getWarehouse());
         System.out.println(w.getSection());
+         */
+        //Manager manager = new Manager();
+        Manager.addWorker();
+
     }
 }

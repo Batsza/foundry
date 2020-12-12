@@ -1,3 +1,4 @@
+/*
 public class LogisticWorker extends Worker {
     public increseMaterial(){
 
@@ -19,3 +20,5 @@ public class LogisticWorker extends Worker {
 
     }
 }
+
+ */

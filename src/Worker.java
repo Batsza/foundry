@@ -1,9 +1,13 @@
+import java.util.Scanner;
 
 public class Worker {
     private int idWorker;
     private int warehouse;
     private int cast;
-    private String section;
+    private int section;
+    private static int numberOfWorker = 0;
+
+    Worker worker[] = new Worker[2];
 
     public int getIdWorker() {
         return idWorker;
@@ -29,17 +33,44 @@ public class Worker {
         this.cast = cast;
     }
 
-    public String getSection() {
+    public int getSection() {
         return section;
     }
 
-    public void setSection(String section) {
+    public void setSection(int section) {
         this.section = section;
     }
-    
-    public void workerList(){
 
+    public void dodajdotablicy(int a, int b) {
+        worker[1].setData(a, b);
     }
 
+    public void setData(int a, int b){
+        this.idWorker = a;
+        this.section = b;
+    }
+
+    public void wyswietlzawartosctablicy() {
+        System.out.println("Id = "+ idWorker + ", section = " + section);
+    }
+
+    public void workerList(){
+        for(int i = 0; i < numberOfWorker; i++){
+            System.out.println("Id: " + idWorker);
+            System.out.println("Sekcja: " + section);
+        }
+    }
+
+    public static int increseNumberOfWorker(){
+        return numberOfWorker++;
+    }
+
+    public void wyswietl(){
+        System.out.println("Pracownik o id: " + idWorker + " w sekcji: " + section);
+    }
+
+    public void wyswietliloscpracownikow() {
+        System.out.println("Ilosc pracownikow: " + numberOfWorker);
+    }
 
 }

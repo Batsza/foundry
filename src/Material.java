@@ -1,4 +1,4 @@
-
+/*
 public class Material {
     private int idMaterial;
     private int weight;
@@ -45,3 +45,5 @@ public class Material {
 
     }
 }
+
+ */

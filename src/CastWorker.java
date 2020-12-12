@@ -1,3 +1,4 @@
+/*
 public class CastWorker extends Worker {
     public addNewCasting(){
 
@@ -15,3 +16,5 @@ public class CastWorker extends Worker {
 
     }
 }
+
+ */
