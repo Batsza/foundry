@@ -36,66 +36,10 @@ public class Worker {
     public void setSection(String section) {
         this.section = section;
     }
-    /*
+    
     public void workerList(){
 
     }
 
-    protected addWorker(){
 
-    }
-
-    protected deleteWorker(){
-        
-    }
-}
-
-class CastWorker extends Worker {
-    public addNewCasting(){
-
-    }
-
-    public addNewProject(){
-
-    }
-
-    public requestMaterials(){
-
-    }
-
-    public changeQuality(){
-
-    }
-}
-
-class LogisticWorker extends Worker {
-    public encreseMaterial(){
-
-    }
-
-    public changeStorageLocation(){
-
-    }
-
-    public showRequestMaterials(){
-
-    }
-
-    public requestTransport(){
-
-    }
-
-    public addNewWarehouse(){
-
-    }
-}
-
-class ShippingWorker extends Worker {
-    public orderTransport(){
-
-    }
-
-    public showRequestTransport(){
-
-    }*/
 }

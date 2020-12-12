@@ -1,4 +1,4 @@
-/*
+
 public class Transport {
     private int idTransport;
     private int capacity;

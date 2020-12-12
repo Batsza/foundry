@@ -1,4 +1,4 @@
-/*
+
 public class Warehouse {
     private int idWarehouse;
     private int cast;
@@ -49,4 +49,3 @@ public class Warehouse {
 
     }
 }
-*/
