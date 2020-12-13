@@ -37,10 +37,7 @@ public class Warehouse {
         this.capacity = capacity;
     }
     public void warehouseList(){
-        System.out.println("Id: " + idWarehouse);
-        System.out.println("ilosc: " + capacity);
-
-
+        System.out.println("Id: " + idWarehouse + " | ilosc: " + capacity);
     }
 /*
     public showWarehouseInformations(){

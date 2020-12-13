@@ -4,6 +4,7 @@ public class ShippingWorker extends Worker {
 
     int numberOfTransport = 0;
     Transport[] transports = new Transport[5];
+
     public void orderTransport(){
         if(numberOfTransport == 0){
             for(int i = numberOfTransport; i < transports.length; i++) {
@@ -23,9 +24,10 @@ public class ShippingWorker extends Worker {
         numberOfTransport++;
 
     }
+
     public void showTransportList(){
+        System.out.println("Transport:");
         for(int i = 1; i < numberOfTransport+1; i++) {
-            System.out.println("Transport ");
             transports[i-1].transportList();
         }
     }

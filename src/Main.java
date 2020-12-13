@@ -4,6 +4,7 @@ public class Main {
     public static void main (String[] args) {
         Manager manager = new Manager();
         LogisticWorker lworker = new LogisticWorker();
+        ShippingWorker sworker = new ShippingWorker();
         Scanner scan = new Scanner(System.in);
         do {
             System.out.println("Menu: ");
@@ -14,6 +15,10 @@ public class Main {
             System.out.println("5 - dodaj materiał");
             System.out.println("6 - wyświetl liste materiałów");
             System.out.println("7 - usuń materiał");
+            System.out.println("8 - dodaj magazyn");
+            System.out.println("9 - wyświetl liste magazynów");
+            System.out.println("10 - dodaj transport");
+            System.out.println("11 - wyświetl liste transportów");
             Integer menu = scan.nextInt();
             try {
                 switch (menu) {
@@ -36,6 +41,18 @@ public class Main {
                         break;
                     case 7:
                         lworker.deleteMaterial();
+                        break;
+                    case 8:
+                        lworker.addNewWarehouse();
+                        break;
+                    case 9:
+                        lworker.showWarehouseList();
+                        break;
+                    case 10:
+                        sworker.orderTransport();
+                        break;
+                    case 11:
+                        sworker.showTransportList();
                         break;
                     default:
                         System.exit(0);

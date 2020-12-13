@@ -24,8 +24,8 @@ public class LogisticWorker extends Worker {
         numberOfWarehouse++;
     }
     public void showWarehouseList(){
+        System.out.println("Magazyn:");
         for(int i = 1; i < numberOfWarehouse+1; i++) {
-            System.out.println("Magazyn ");
             warehouse[i-1].warehouseList();
         }
     }
