@@ -38,11 +38,6 @@ public class Worker {
         this.section = section;
     }
 
-    public void setData(int a, int b){
-        this.idWorker = a;
-        this.section = b;
-    }
-
     public void workerList(){
             System.out.println("Id: " + idWorker);
             System.out.println("Sekcja: " + section);

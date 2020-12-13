@@ -1,4 +1,4 @@
-/*
+
 public class Project {
     private int idProject;
     private String projectDetails;
@@ -46,12 +46,20 @@ public class Project {
         this.size = size;
     }
 
+    public void projectList(){
+        System.out.println("Id: " + idProject);
+        System.out.println("Waga: " + weight);
+        System.out.println("wielkosc: " + size);
+        System.out.println("proj det: " + projectDetails);
+        System.out.println("form det: " + formDetails);
+    }
+/*
     public showProjectInformations(){
 
     }
 
     public static findProject(){
 
-    }
+    }*/
 }
-*/
+
