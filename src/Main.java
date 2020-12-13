@@ -1,31 +1,32 @@
-import javax.swing.*;
 import java.util.*;
 
 public class Main {
     public static void main (String[] args) {
-        /*
-        Worker w = new Worker();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Podaj ID: ");
-        w.setIdWorker(sc.nextInt()) ;
-
-        System.out.println("Podaj odlew: ");
-        w.setCast(sc.nextInt());
-
-        System.out.println("Podaj magazyn: ");
-        w.setWarehouse(sc.nextInt());
-        System.out.println("Podaj sekcja: ");
-        w.setSection(sc.next());
-
-        System.out.println(w.getIdWorker());
-        System.out.println(w.getCast());
-        System.out.println(w.getWarehouse());
-        System.out.println(w.getSection());
-         */
         Manager manager = new Manager();
-        for(int i = 0; i < 2; i++){
-            manager.addWorker();
-        }
-        manager.showWorkersList();
+        Scanner scan = new Scanner(System.in);
+        do {
+            System.out.println("Menu: ");
+            System.out.println("1 - dodaj pracownika");
+            System.out.println("2 - wyświetl pracowników");
+            System.out.println("3 - usuń pracownika");
+            System.out.println("4 - zakończ program");
+            Integer menu = scan.nextInt();
+            try {
+                switch (menu) {
+                    case 1:
+                        manager.addWorker();
+                        break;
+                    case 2:
+                        manager.showWorkersList();
+                        break;
+                    case 3:
+                        manager.deleteWorker();
+                    case 4:
+                        System.exit(0);
+                    default:
+                        System.exit(0);
+                }
+            } catch(NumberFormatException e) {}
+        } while(true);
     }
 }
