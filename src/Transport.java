@@ -1,4 +1,4 @@
-/*
+
 public class Transport {
     private int idTransport;
     private int capacity;
@@ -27,13 +27,20 @@ public class Transport {
     public void setWeight(int weight) {
         this.weight = weight;
     }
+    public void transportList(){
+        System.out.println("Id: " + idTransport);
+        System.out.println("ilosc: " + capacity);
+        System.out.println("waga: " + weight );
 
+
+    }
+/*
     public showTransportInformations(){
 
     }
 
     public static findTransport(){
 
-    }
+    }*/
 }
-*/
+

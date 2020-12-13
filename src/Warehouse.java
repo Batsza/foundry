@@ -1,4 +1,4 @@
-/*
+
 public class Warehouse {
     private int idWarehouse;
     private int cast;
@@ -36,7 +36,13 @@ public class Warehouse {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+    public void warehouseList(){
+        System.out.println("Id: " + idWarehouse);
+        System.out.println("ilosc: " + capacity);
 
+
+    }
+/*
     public showWarehouseInformations(){
 
     }
@@ -47,7 +53,7 @@ public class Warehouse {
 
     public static findWarehouse(){
 
-    }
+    }*/
 }
 
- */
+
