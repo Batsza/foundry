@@ -22,8 +22,10 @@ public class Main {
         System.out.println(w.getWarehouse());
         System.out.println(w.getSection());
          */
-        //Manager manager = new Manager();
-        Manager.addWorker();
-
+        Manager manager = new Manager();
+        for(int i = 0; i < 2; i++){
+            manager.addWorker();
+        }
+        manager.showWorkersList();
     }
 }
