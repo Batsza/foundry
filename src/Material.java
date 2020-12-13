@@ -17,7 +17,7 @@ public class Material {
         return name;
     }
 
-    public void setName(String status){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -46,7 +46,7 @@ public class Material {
     }
 
     public void materialList(){
-        System.out.println("Id: " + idMaterial + " | waga: " + amount + " | ilość: " + amount + " | cena: " + price);
+        System.out.println("Id: " + idMaterial + " | nazwa: " + name +  " | waga: " + amount + " | ilość: " + amount + " | cena: " + price);
     }
 /*
     public showMaterialInformations(){

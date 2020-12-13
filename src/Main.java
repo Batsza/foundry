@@ -13,6 +13,7 @@ public class Main {
             System.out.println("4 - zakończ program");
             System.out.println("5 - dodaj materiał");
             System.out.println("6 - wyświetl liste materiałów");
+            System.out.println("7 - usuń materiał");
             Integer menu = scan.nextInt();
             try {
                 switch (menu) {
@@ -32,6 +33,9 @@ public class Main {
                         break;
                     case 6:
                         lworker.showMaterialList();
+                        break;
+                    case 7:
+                        lworker.deleteMaterial();
                         break;
                     default:
                         System.exit(0);
