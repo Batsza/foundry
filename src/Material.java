@@ -1,6 +1,6 @@
-/*
 public class Material {
     private int idMaterial;
+    private String name;
     private int weight;
     private int amount;
     private int price;
@@ -11,6 +11,14 @@ public class Material {
 
     public void setIdMaterial(int idMaterial) {
         this.idMaterial = idMaterial;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String status){
+        this.name = name;
     }
 
     public int getWeight() {
@@ -37,6 +45,10 @@ public class Material {
         this.price = price;
     }
 
+    public void materialList(){
+        System.out.println("Id: " + idMaterial + " | waga: " + amount + " | ilość: " + amount + " | cena: " + price);
+    }
+/*
     public showMaterialInformations(){
 
     }
@@ -44,6 +56,6 @@ public class Material {
     public static findMaterial(){
 
     }
-}
 
  */
+}

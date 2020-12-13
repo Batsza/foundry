@@ -3,6 +3,7 @@ import java.util.*;
 public class Main {
     public static void main (String[] args) {
         Manager manager = new Manager();
+        LogisticWorker lworker = new LogisticWorker();
         Scanner scan = new Scanner(System.in);
         do {
             System.out.println("Menu: ");
@@ -10,6 +11,8 @@ public class Main {
             System.out.println("2 - wyświetl pracowników");
             System.out.println("3 - usuń pracownika");
             System.out.println("4 - zakończ program");
+            System.out.println("5 - dodaj materiał");
+            System.out.println("6 - wyświetl liste materiałów");
             Integer menu = scan.nextInt();
             try {
                 switch (menu) {
@@ -21,8 +24,15 @@ public class Main {
                         break;
                     case 3:
                         manager.deleteWorker();
+                        break;
                     case 4:
                         System.exit(0);
+                    case 5:
+                        lworker.addNewMaterial();
+                        break;
+                    case 6:
+                        lworker.showMaterialList();
+                        break;
                     default:
                         System.exit(0);
                 }

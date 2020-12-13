@@ -39,7 +39,6 @@ public class Worker {
     }
 
     public void workerList(){
-            System.out.println("Id: " + idWorker);
-            System.out.println("Sekcja: " + section);
+        System.out.println("Id: " + idWorker + " | sekcja: " + section);
     }
 }

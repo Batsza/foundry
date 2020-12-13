@@ -5,26 +5,26 @@ public class CastWorker extends Worker {
     int numberOfCast = 0;
     Project[] proj = new Project[5];
     Cast[] cast = new Cast[5];
-   public void  addNewCasting(){
-            if(numberOfCast == 0){
+    public void  addNewCasting(){
+        if(numberOfCast == 0){
         for(int i = numberOfCast; i < cast.length; i++) {
             cast[i] = new Cast();
         }
     }
     Scanner scan = new Scanner(System.in);
         System.out.print("Podaj id odlewu: ");
-    Integer a = scan.nextInt();
-       cast[numberOfCast].setIdCast(a);
+        Integer a = scan.nextInt();
+        cast[numberOfCast].setIdCast(a);
         System.out.print("Podaj ilosc: ");
-    Integer b = scan.nextInt();
-       cast[numberOfCast].setAmount(b);
+        Integer b = scan.nextInt();
+        cast[numberOfCast].setAmount(b);
         System.out.print("Podaj jakosc: ");
-    Boolean c = scan.nextBoolean();
-       cast[numberOfCast].setQuality(c);
-       System.out.print("Podaj status: ");
-       String d = scan.next();
-       cast[numberOfCast].setStatus(d);
-       numberOfCast++;
+        Boolean c = scan.nextBoolean();
+        cast[numberOfCast].setQuality(c);
+        System.out.print("Podaj status: ");
+        String d = scan.next();
+        cast[numberOfCast].setStatus(d);
+        numberOfCast++;
     }
     public void showCastList(){
         for(int i = 1; i < numberOfCast+1; i++) {
@@ -33,13 +33,13 @@ public class CastWorker extends Worker {
         }
     }
 
-
     public void showProjectList(){
         for(int i = 1; i < numberOfProject+1; i++) {
             System.out.println("Project ");
             proj[i-1].projectList();
         }
     }
+
     public void addNewProject(){
         if(numberOfProject == 0){
             for(int i = numberOfProject; i < proj.length; i++) {

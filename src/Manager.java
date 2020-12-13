@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Manager extends Worker {
 
     int numberOfWorker = 0;
-    Worker[] worker = new Worker[5];
+    Worker[] worker = new Worker[100];
 
     Scanner scan = new Scanner(System.in);
 
@@ -25,9 +25,11 @@ public class Manager extends Worker {
     }
 
     public void showWorkersList(){
+        System.out.println("Lista pracowników: ");
         for(int i = 1; i < numberOfWorker+1; i++) {
-            System.out.println("Pracownik nr: " + i);
-            worker[i-1].workerList();
+            if(worker[i-1].getIdWorker() != 0) {
+                worker[i - 1].workerList();
+            }
         }
     }
 
