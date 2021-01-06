@@ -3,7 +3,7 @@ public class Project {
     private int idProject;
     private String projectDetails;
     private String formDetails;
-    protected int weight;
+    public int weight;
     private int size;
     protected int idMaterial;
     public Project(){}

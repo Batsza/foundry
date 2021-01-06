@@ -5,6 +5,7 @@ public class Cast extends Project {
     private int amount;
     private boolean quality;
     private int idWarehouse;
+    private int idProj;
 
     public Cast(){ }
     public Cast(int idCast,String status,int amount,boolean quality, int idMaterial, int idWarehouse){
@@ -72,6 +73,14 @@ public class Cast extends Project {
 
     public void setIdWarehouse(int idWarehouse) {
         this.idWarehouse = idWarehouse;
+    }
+
+    public int getIdProj() {
+        return idProj;
+    }
+
+    public void setIdProj(int idProj) {
+        this.idProj = idProj;
     }
 
 

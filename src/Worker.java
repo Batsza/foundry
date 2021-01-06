@@ -5,7 +5,7 @@ public class Worker {
     private int section;
     public Project[] proj = new Project[5];
     public Cast[] cast = new Cast[5];
-    public Warehouse[] warehouse = new Warehouse[5];
+    public Warehouse[] warehouseXD = new Warehouse[5];
     int numberOfWarehouse = 1; //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
 
 
@@ -31,9 +31,13 @@ public class Worker {
     }
 
     static public boolean calculateWarehouseCapacity(Cast cast, Warehouse warehouse){
+
         int MaxCapacity = warehouse.getCapacity();
+        System.out.println( "pojem " + MaxCapacity);
         int castAm = cast.getAmount();
+        System.out.println( "ilosc " + castAm);
         int castWe = cast.getWeight();
+        System.out.println( "waga " + castWe);
         int castVolume = castAm * castWe;
         if(MaxCapacity < castVolume)
             return false;

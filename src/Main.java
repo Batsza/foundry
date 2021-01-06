@@ -6,6 +6,7 @@ public class Main {
         LogisticWorker lworker = new LogisticWorker();
         ShippingWorker sworker = new ShippingWorker();
         CastWorker cworker = new CastWorker();
+        Worker wor = new Worker();
         Scanner scan = new Scanner(System.in);
 
 
@@ -15,7 +16,9 @@ public class Main {
         Warehouse warehouse1 = new Warehouse(1,1,1,1000);
         cworker.cast[0] = cast1;
         cworker.proj[0] = project1;
-        lworker.warehouse[0] = warehouse1;
+        lworker.warehouseXD[0] = warehouse1;
+        cworker.warehouseXD[0] = warehouse1;
+        wor.warehouseXD[0] = warehouse1;
         do {
             System.out.println("Menu: ");
             System.out.println("1 - dodaj pracownika");

@@ -7,25 +7,26 @@ public class LogisticWorker extends Worker {
 
     public void  addNewWarehouse(){
         if(numberOfWarehouse == 1){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
-            for(int i = numberOfWarehouse; i < warehouse.length; i++) {
-                warehouse[i] = new Warehouse();
+            for(int i = numberOfWarehouse; i < warehouseXD.length; i++) {
+                warehouseXD[i] = new Warehouse();
             }
         }
         Scanner scan = new Scanner(System.in);
         System.out.print("Podaj id magzynu: ");
         Integer a = scan.nextInt();
-        warehouse[numberOfWarehouse].setIdWarehouse(a);
+        warehouseXD[numberOfWarehouse].setIdWarehouse(a);
         System.out.print("Podaj pojemnosc: ");
         Integer b = scan.nextInt();
-        warehouse[numberOfWarehouse].setCapacity(b);
+        warehouseXD[numberOfWarehouse].setCapacity(b);
 
         numberOfWarehouse++;
     }
 
     public void showWarehouseList(){
+        System.out.println( "warehousee0"+warehouseXD[0]);
         System.out.println("Magazyn:");
         for(int i = 1; i < numberOfWarehouse+1; i++) {
-            warehouse[i-1].warehouseList();
+            warehouseXD[i-1].warehouseList();
         }
     }
 
