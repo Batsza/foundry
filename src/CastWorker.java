@@ -5,6 +5,7 @@ public class CastWorker extends Worker {
     int numberOfCast = 0;
     Project[] proj = new Project[5];
     Cast[] cast = new Cast[5];
+
     public void  addNewCasting(){
         if(numberOfCast == 0){
         for(int i = numberOfCast; i < cast.length; i++) {
@@ -23,7 +24,15 @@ public class CastWorker extends Worker {
         cast[numberOfCast].setQuality(c);
         System.out.print("Podaj status: ");
         String d = scan.next();
+        System.out.print("Podaj id projektu: ");
+        int e = scan.nextInt();
         cast[numberOfCast].setStatus(d);
+        for(int i = 0; i < numberOfProject; i++) {
+             if(proj[i].getIdProject() == e){
+                 cast[numberOfCast].setIdMaterial(proj[i].getIdMaterial());
+             };
+        }
+
         numberOfCast++;
     }
     public void showCastList(){
@@ -48,7 +57,7 @@ public class CastWorker extends Worker {
         }
         Scanner scan = new Scanner(System.in);
 
-        System.out.print("Podaj id projectu: ");
+        System.out.print("Podaj id projektu: ");
         Integer a = scan.nextInt();
         proj[numberOfProject].setIdProject(a);
         System.out.print("Podaj wage: ");
@@ -58,11 +67,15 @@ public class CastWorker extends Worker {
         Integer c = scan.nextInt();
         proj[numberOfProject].setSize(c);
         System.out.print("Podaj opis projektu: ");
-        String d = scan.next();
+        scan.nextLine();
+        String d = scan.nextLine();
         proj[numberOfProject].setProjectDetails(d);
-        System.out.print("Podaj opis projektu: ");
-        String e = scan.next();
+        System.out.print("Podaj opis formy: ");
+        String e = scan.nextLine();
         proj[numberOfProject].setFormDetails(e);
+        System.out.println("Podaj id materiału");
+        int f = scan.nextInt();
+        proj[numberOfProject].setIdMaterial(f);
         numberOfProject++;
     }
 /*

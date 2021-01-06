@@ -5,6 +5,7 @@ public class Project {
     private String formDetails;
     private int weight;
     private int size;
+    private int idMaterial;
 
     public int getIdProject() {
         return idProject;
@@ -52,6 +53,15 @@ public class Project {
         System.out.println("wielkosc: " + size);
         System.out.println("proj det: " + projectDetails);
         System.out.println("form det: " + formDetails);
+        System.out.println("id materiału "+idMaterial);
+    }
+
+    public int getIdMaterial() {
+        return idMaterial;
+    }
+
+    public void setIdMaterial(int idMaterial) {
+        this.idMaterial = idMaterial;
     }
 /*
     public showProjectInformations(){

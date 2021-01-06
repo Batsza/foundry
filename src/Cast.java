@@ -4,6 +4,7 @@ public class Cast extends Project {
     private String status;
     private int amount;
     private boolean quality;
+    private int idMaterial;
 
     public int getAmount() {
         return amount;
@@ -16,6 +17,10 @@ public class Cast extends Project {
     public void setIdCast(int idCast) {
         this.idCast = idCast;
     }
+
+    public void setIdMaterial(int idMaterial){this.idMaterial = idMaterial;}
+
+    public int getIdMaterial(){return idMaterial;}
 
     public int getIdCast() {
         return idCast;
@@ -41,6 +46,7 @@ public class Cast extends Project {
         System.out.println("Id: " + idCast);
         System.out.println("ilosc: " + amount);
         System.out.println("status: " + status);
+        System.out.println("Id materiału: "+ idMaterial);
 
         if(quality==true)
             System.out.println("jakosc odpowiednia " );

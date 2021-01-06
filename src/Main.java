@@ -5,6 +5,7 @@ public class Main {
         Manager manager = new Manager();
         LogisticWorker lworker = new LogisticWorker();
         ShippingWorker sworker = new ShippingWorker();
+        CastWorker cworker = new CastWorker();
         Scanner scan = new Scanner(System.in);
         do {
             System.out.println("Menu: ");
@@ -19,6 +20,10 @@ public class Main {
             System.out.println("9 - wyświetl liste magazynów");
             System.out.println("10 - dodaj transport");
             System.out.println("11 - wyświetl liste transportów");
+            System.out.println("12 - dodaj odlew");
+            System.out.println("13 - dodaj projekt");
+            System.out.println("14 - wyświetl listę odlewów");
+            System.out.println("15 - wyświetl listę projektów");
             Integer menu = scan.nextInt();
             try {
                 switch (menu) {
@@ -53,6 +58,18 @@ public class Main {
                         break;
                     case 11:
                         sworker.showTransportList();
+                        break;
+                    case 12:
+                        cworker.addNewCasting();
+                        break;
+                    case 13:
+                        cworker.addNewProject();
+                        break;
+                    case 14:
+                        cworker.showCastList();
+                        break;
+                    case 15:
+                        cworker.showProjectList();
                         break;
                     default:
                         System.exit(0);
