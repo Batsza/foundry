@@ -46,5 +46,19 @@ public class Worker {
         return true;
     }
 
+    static public boolean calculateWarehouseCapacity(Material material, Warehouse warehouse){
+        int MaxCapacity = warehouse.getCapacity();
+        System.out.println( "pojem " + MaxCapacity);
+        int materialAm = material.getAmount();
+        System.out.println( "ilosc " + materialAm);
+        int materialWe = material.getWeight();
+        System.out.println( "waga " + materialWe);
+        int materialVolume = materialAm * materialWe;
+        if(MaxCapacity < materialVolume)
+            return false;
+        warehouse.setCapacity(MaxCapacity-materialVolume);
+        warehouse.setMaterials(warehouse.getMaterials() + materialAm);
+        return true;
+    }
 
 }

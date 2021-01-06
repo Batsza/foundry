@@ -18,7 +18,6 @@ public class LogisticWorker extends Worker {
         System.out.print("Podaj pojemnosc: ");
         Integer b = scan.nextInt();
         warehouseXD[numberOfWarehouse].setCapacity(b);
-
         numberOfWarehouse++;
     }
 
@@ -29,7 +28,6 @@ public class LogisticWorker extends Worker {
             warehouseXD[i-1].warehouseList();
         }
     }
-
 
     public void  addNewMaterial(){
         if(numberOfMaterials == 0){
@@ -53,6 +51,12 @@ public class LogisticWorker extends Worker {
         System.out.print("Podaj cenę: ");
         Integer e = scan.nextInt();
         material[numberOfMaterials].setPrice(e);
+        System.out.print("Podaj id magazynu: ");
+        Integer f = scan.nextInt();
+        material[numberOfMaterials].setIdWarehouse(f);
+        if(!calculateWarehouseCapacity(material[numberOfMaterials],warehouseXD[f-1])){
+            System.out.print("zamala pojemnosc");
+        }
         numberOfMaterials++;
     }
     public void showMaterialList(){
