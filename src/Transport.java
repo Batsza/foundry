@@ -2,7 +2,7 @@
 public class Transport {
     private int idTransport;
     private int capacity;
-    private int weight;
+    private int availableweight;
 
     public int getIdTransport() {
         return idTransport;
@@ -20,16 +20,16 @@ public class Transport {
         this.capacity = capacity;
     }
 
-    public int getWeight() {
-        return weight;
+    public int getAvailableweight() {
+        return availableweight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setAvailableweight(int availableweight) {
+        this.availableweight = availableweight;
     }
 
     public void transportList(){
-        System.out.println("Id: " + idTransport + " | ilosc: " + capacity + " | waga: " + weight );
+        System.out.println("Id: " + idTransport + " | ilosc: " + capacity + " | waga: " + availableweight);
     }
 /*
     public showTransportInformations(){

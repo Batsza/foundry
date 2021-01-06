@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Worker {
     private int idWorker;
     private int section;
@@ -36,9 +34,9 @@ public class Worker {
         System.out.println( "pojem " + MaxCapacity);
         int castAm = cast.getAmount();
         System.out.println( "ilosc " + castAm);
-        int castWe = project.getWeight();
-        System.out.println( "waga " + castWe);
-        int castVolume = castAm * castWe;
+        int castSe = project.getSize();
+        System.out.println( "waga " + castSe);
+        int castVolume = castAm * castSe;
         if(MaxCapacity < castVolume)
             return false;
         warehouse.setCapacity(MaxCapacity-castVolume);
@@ -51,9 +49,9 @@ public class Worker {
         System.out.println( "pojem " + MaxCapacity);
         int materialAm = material.getAmount();
         System.out.println( "ilosc " + materialAm);
-        int materialWe = material.getWeight();
-        System.out.println( "waga " + materialWe);
-        int materialVolume = materialAm * materialWe;
+        int materialSe = material.getSize();
+        System.out.println( "waga " + materialSe);
+        int materialVolume = materialAm * materialSe;
         if(MaxCapacity < materialVolume)
             return false;
         warehouse.setCapacity(MaxCapacity-materialVolume);

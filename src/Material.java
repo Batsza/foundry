@@ -1,7 +1,7 @@
 public class Material {
     private int idMaterial;
     private String name;
-    private int weight;
+    private int size;
     private int amount;
     private int price;
     private int idWarehouse;
@@ -22,12 +22,12 @@ public class Material {
         this.name = name;
     }
 
-    public int getWeight() {
-        return weight;
+    public int getSize() {
+        return size;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public int getAmount() {

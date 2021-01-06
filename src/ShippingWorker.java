@@ -20,7 +20,7 @@ public class ShippingWorker extends Worker {
         transports[numberOfTransport].setCapacity(b);
         System.out.print("Podaj wage: ");
         Integer c = scan.nextInt();
-        transports[numberOfTransport].setWeight(c);
+        transports[numberOfTransport].setAvailableweight(c);
         numberOfTransport++;
 
     }

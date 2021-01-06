@@ -44,7 +44,7 @@ public class LogisticWorker extends Worker {
         material[numberOfMaterials].setName(b);
         System.out.print("Podaj wagę: ");
         Integer c = scan.nextInt();
-        material[numberOfMaterials].setWeight(c);
+        material[numberOfMaterials].setSize(c);
         System.out.print("Podaj ilosc: ");
         Integer d = scan.nextInt();
         material[numberOfMaterials].setAmount(d);
@@ -88,7 +88,7 @@ public class LogisticWorker extends Worker {
                     for(int j = i; j < numberOfMaterials; j++){
                         material[j].setIdMaterial(material[j+1].getIdMaterial()-1);
                         material[j].setName(material[j+1].getName());
-                        material[j].setWeight(material[j+1].getWeight());
+                        material[j].setSize(material[j+1].getSize());
                         material[j].setAmount(material[j+1].getAmount());
                         material[j].setPrice(material[j+1].getPrice());
                     }
