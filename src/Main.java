@@ -7,6 +7,15 @@ public class Main {
         ShippingWorker sworker = new ShippingWorker();
         CastWorker cworker = new CastWorker();
         Scanner scan = new Scanner(System.in);
+
+
+        ///tepm//
+        Project project1 = new Project(1,"opis projektu","opis formy",10,10,1);
+        Cast cast1 = new Cast(1,"ok",13,true,1,1);
+        Warehouse warehouse1 = new Warehouse(1,1,1,1000);
+        cworker.cast[0] = cast1;
+        cworker.proj[0] = project1;
+        lworker.warehouse[0] = warehouse1;
         do {
             System.out.println("Menu: ");
             System.out.println("1 - dodaj pracownika");

@@ -4,6 +4,7 @@ public class Material {
     private int weight;
     private int amount;
     private int price;
+    private int idWarehouse;
 
     public int getIdMaterial() {
         return idMaterial;
@@ -46,7 +47,15 @@ public class Material {
     }
 
     public void materialList(){
-        System.out.println("Id: " + idMaterial + " | nazwa: " + name +  " | waga: " + amount + " | ilość: " + amount + " | cena: " + price);
+        System.out.println("Id: " + idMaterial + " | nazwa: " + name +  " | waga: " + amount + " | ilość: " + amount + " | cena: " + price + " | idwarehouse: " + idWarehouse);
+    }
+
+    public int getIdWarehouse() {
+        return idWarehouse;
+    }
+
+    public void setIdWarehouse(int idWarehouse) {
+        this.idWarehouse = idWarehouse;
     }
 /*
     public showMaterialInformations(){

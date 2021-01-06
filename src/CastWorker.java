@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 public class CastWorker extends Worker {
-    int numberOfProject = 0;
-    int numberOfCast = 0;
-    Project[] proj = new Project[5];
-    Cast[] cast = new Cast[5];
+    int numberOfProject = 1; //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
+    int numberOfCast = 1; //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
+
 
     public void  addNewCasting(){
-        if(numberOfCast == 0){
+        System.out.println( "warehousee0"+warehouse[0]);
+        if(numberOfCast == 1){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
         for(int i = numberOfCast; i < cast.length; i++) {
             cast[i] = new Cast();
         }
@@ -32,12 +32,23 @@ public class CastWorker extends Worker {
                  cast[numberOfCast].setIdMaterial(proj[i].getIdMaterial());
              };
         }
+        System.out.println("Podaj id magazynu: ");
+        int f = scan.nextInt();
+        cast[numberOfCast].setIdWarehouse(f);
+
+        for(int i = 1; i < numberOfWarehouse+1; i++) {
+            if(warehouse[i-1].getIdWarehouse() == f){
+                if(!calculateWarehouseCapacity(cast[numberOfCast],warehouse[i]))
+                    break;
+            };
+        }
+
 
         numberOfCast++;
     }
     public void showCastList(){
         for(int i = 1; i < numberOfCast+1; i++) {
-            System.out.println("Project ");
+            System.out.println("Cast ");
             cast[i-1].castList();
         }
     }
@@ -50,7 +61,7 @@ public class CastWorker extends Worker {
     }
 
     public void addNewProject(){
-        if(numberOfProject == 0){
+        if(numberOfProject == 1){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
             for(int i = numberOfProject; i < proj.length; i++) {
                 proj[i] = new Project();
             }

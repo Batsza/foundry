@@ -1,9 +1,18 @@
 
 public class Warehouse {
     private int idWarehouse;
-    private int cast;
+    private int castAmount;
     private int materials;
     private int capacity;
+
+    public Warehouse(){}
+    public Warehouse(int idWarehouse, int cast, int materials, int capacity){
+        this.setIdWarehouse(idWarehouse);
+        this.setCastAmount(cast);
+        this.setMaterials(materials);
+        this.setCapacity(capacity);
+    }
+
 
     public int getIdWarehouse() {
         return idWarehouse;
@@ -13,12 +22,12 @@ public class Warehouse {
         this.idWarehouse = idWarehouse;
     }
 
-    public int getCast() {
-        return cast;
+    public int getCastAmount() {
+        return castAmount;
     }
 
-    public void setCast(int cast) {
-        this.cast = cast;
+    public void setCastAmount(int castAmount) {
+        this.castAmount = castAmount;
     }
 
     public int getMaterials() {
@@ -40,6 +49,7 @@ public class Warehouse {
         System.out.println("Id: " + idWarehouse + " | ilosc: " + capacity);
     }
 /*
+
     public showWarehouseInformations(){
 
     }

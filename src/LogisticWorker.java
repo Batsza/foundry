@@ -5,10 +5,8 @@ public class LogisticWorker extends Worker {
     Material[] material = new Material[100];
     Scanner scan = new Scanner(System.in);
 
-    int numberOfWarehouse = 0;
-    Warehouse[] warehouse = new Warehouse[5];
     public void  addNewWarehouse(){
-        if(numberOfWarehouse == 0){
+        if(numberOfWarehouse == 1){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
             for(int i = numberOfWarehouse; i < warehouse.length; i++) {
                 warehouse[i] = new Warehouse();
             }
@@ -23,6 +21,7 @@ public class LogisticWorker extends Worker {
 
         numberOfWarehouse++;
     }
+
     public void showWarehouseList(){
         System.out.println("Magazyn:");
         for(int i = 1; i < numberOfWarehouse+1; i++) {

@@ -3,9 +3,19 @@ public class Project {
     private int idProject;
     private String projectDetails;
     private String formDetails;
-    private int weight;
+    protected int weight;
     private int size;
-    private int idMaterial;
+    protected int idMaterial;
+    public Project(){}
+
+    public Project(int idProj, String descProj, String descForm, int weight, int size, int idMaterial){
+        this.setIdProject(idProj);
+        this.setProjectDetails(descProj);
+        this.setFormDetails(descForm);
+        this.setWeight(weight);
+        this.setSize(size);
+        this.setIdMaterial(idMaterial);
+    }
 
     public int getIdProject() {
         return idProject;
