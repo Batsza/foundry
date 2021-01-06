@@ -30,13 +30,13 @@ public class Worker {
         System.out.println("Id: " + idWorker + " | sekcja: " + section);
     }
 
-    static public boolean calculateWarehouseCapacity(Cast cast, Warehouse warehouse){
+    static public boolean calculateWarehouseCapacity(Cast cast, Warehouse warehouse, Project project){
 
         int MaxCapacity = warehouse.getCapacity();
         System.out.println( "pojem " + MaxCapacity);
         int castAm = cast.getAmount();
         System.out.println( "ilosc " + castAm);
-        int castWe = cast.getWeight();
+        int castWe = project.getWeight();
         System.out.println( "waga " + castWe);
         int castVolume = castAm * castWe;
         if(MaxCapacity < castVolume)

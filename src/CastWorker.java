@@ -38,7 +38,7 @@ public class CastWorker extends Worker {
         int f = scan.nextInt();
         cast[numberOfCast].setIdWarehouse(f);
 
-                if(!calculateWarehouseCapacity(cast[numberOfCast],warehouseXD[f-1])){
+                if(!calculateWarehouseCapacity(cast[numberOfCast],warehouseXD[f-1],proj[e-1])){
                     System.out.print("zamala pojemnosc");
                 }
 
