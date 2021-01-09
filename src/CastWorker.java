@@ -6,7 +6,6 @@ public class CastWorker extends Worker {
 
 
     public void  addNewCasting(){
-        System.out.println( "warehousee0"+warehouseXD[0]);
         if(numberOfCast == 1){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
         for(int i = numberOfCast; i < cast.length; i++) {
             cast[i] = new Cast();
@@ -42,15 +41,15 @@ public class CastWorker extends Worker {
                     System.out.print("zamala pojemnosc");
                 }
 
-
-
-
         numberOfCast++;
     }
+
+
+
     public void showCastList(){
         for(int i = 1; i < numberOfCast+1; i++) {
             System.out.println("Cast ");
-            cast[i-1].castList();
+             cast[i-1].castList();
         }
     }
 

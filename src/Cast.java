@@ -8,14 +8,17 @@ public class Cast extends Project {
     private int idProj;
 
     public Cast(){ }
-    public Cast(int idCast,String status,int amount,boolean quality, int idMaterial, int idWarehouse){
+    public Cast(int idCast,String status,int amount,boolean quality, int idMaterial, int idWarehouse,int idProj){
         this.setIdCast(idCast);
         this.setStatus(status);
         this.setAmount(amount);
         this.setQuality(quality);
         this.setIdMaterial(idMaterial);
         this.setIdWarehouse(idWarehouse);
+        this.setIdProj(idProj);
     }
+
+
 
     public int getAmount() {
         return amount;
@@ -59,7 +62,6 @@ public class Cast extends Project {
         System.out.println("status: " + status);
         System.out.println("Id materiału: "+ idMaterial);
         System.out.println("Id magazynu" + idWarehouse);
-
         if(quality==true)
             System.out.println("jakosc odpowiednia " );
         else

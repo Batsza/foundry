@@ -12,9 +12,9 @@ public class Main {
 
         ///tepm//
         Project project1 = new Project(1,"opis projektu","opis formy",10,10,1);
-        Cast cast1 = new Cast(1,"ok",13,true,1,1);
+        Cast cast1 = new Cast(1,"ok",13,true,1,1,1);
         Warehouse warehouse1 = new Warehouse(1,1,1,1000);
-        cworker.cast[0] = cast1;
+        System.out.println("SIZE: " +cast1.getSize());
         cworker.proj[0] = project1;
         lworker.warehouseXD[0] = warehouse1;
         cworker.warehouseXD[0] = warehouse1;

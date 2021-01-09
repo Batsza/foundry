@@ -6,6 +6,9 @@ public class ShippingWorker extends Worker {
     Transport[] transports = new Transport[5];
 
     public void orderTransport(){
+        Cast castT = new Cast();
+        Warehouse warehouseT = new Warehouse();
+
         if(numberOfTransport == 0){
             for(int i = numberOfTransport; i < transports.length; i++) {
                 transports[i] = new Transport();
@@ -21,8 +24,43 @@ public class ShippingWorker extends Worker {
         System.out.print("Podaj wage: ");
         Integer c = scan.nextInt();
         transports[numberOfTransport].setAvailableweight(c);
+        System.out.println("Podaj id odlewu: ");
+        Integer e = scan.nextInt();
+        transports[numberOfTransport].setIdCast(e);
         numberOfTransport++;
 
+        for (int i = 0; i < cast.length; i++){
+            if(cast[i].getIdCast()== e ){
+                castT = cast[i];
+            }
+
+        }
+
+        for(int i = 0;i <warehouseXD.length; i++){
+            if(warehouseXD[i].getIdWarehouse() == castT.getIdWarehouse()) {
+                int castVolume = getCastSize(castT) * castT.getAmount();
+                if (castVolume <= transports[numberOfTransport].getCapacity()){
+                    warehouseXD[i].setCapacity(warehouseXD[i].getCapacity() + castVolume);
+                    warehouseXD[i].setCastAmount(warehouseXD[i].getCastAmount() - castT.getAmount());
+                    castT.setStatus("Wysłano");
+                    for (int j = 0; j < cast.length; j++){
+                        if(cast[j].getIdCast()== e ){
+                            cast[j] = castT;
+                        }
+
+                    }
+                    transports[numberOfTransport].setStatus(true);
+                }
+                else {
+                    transports[numberOfTransport].setStatus(false);
+                }
+
+            }
+
+        }
+
+
+        //if(calculateWarehouseCapacityT(castT,)){}
     }
 
     public void showTransportList(){
