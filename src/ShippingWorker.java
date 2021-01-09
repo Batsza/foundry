@@ -14,6 +14,7 @@ public class ShippingWorker extends Worker {
                 transports[i] = new Transport();
             }
         }
+
         Scanner scan = new Scanner(System.in);
         System.out.print("Podaj id transportu: ");
         Integer a = scan.nextInt();
@@ -24,14 +25,15 @@ public class ShippingWorker extends Worker {
         System.out.print("Podaj wage: ");
         Integer c = scan.nextInt();
         transports[numberOfTransport].setAvailableweight(c);
-        System.out.println("Podaj id odlewu: ");
+        System.out.print("Podaj id odlewu: ");
         Integer e = scan.nextInt();
         transports[numberOfTransport].setIdCast(e);
-        numberOfTransport++;
 
-        for (int i = 0; i < cast.length; i++){
-            if(cast[i].getIdCast()== e ){
+        for (int i = 0; i <cast.length; i++){
+
+            if(cast[i].getIdCast()== e && cast[i]!=null ){
                 castT = cast[i];
+                break;
             }
 
         }
@@ -39,7 +41,8 @@ public class ShippingWorker extends Worker {
         for(int i = 0;i <warehouseXD.length; i++){
             if(warehouseXD[i].getIdWarehouse() == castT.getIdWarehouse()) {
                 int castVolume = getCastSize(castT) * castT.getAmount();
-                if (castVolume <= transports[numberOfTransport].getCapacity()){
+                int castWeight = getCastWeight(castT) * castT.getAmount();
+                if (castVolume <= transports[numberOfTransport].getCapacity()&& castWeight <= transports[numberOfTransport].getCapacity()){
                     warehouseXD[i].setCapacity(warehouseXD[i].getCapacity() + castVolume);
                     warehouseXD[i].setCastAmount(warehouseXD[i].getCastAmount() - castT.getAmount());
                     castT.setStatus("Wysłano");
@@ -54,12 +57,12 @@ public class ShippingWorker extends Worker {
                 else {
                     transports[numberOfTransport].setStatus(false);
                 }
-
+                    break;
             }
 
         }
 
-
+        numberOfTransport++;
         //if(calculateWarehouseCapacityT(castT,)){}
     }
 

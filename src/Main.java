@@ -14,11 +14,10 @@ public class Main {
         Project project1 = new Project(1,"opis projektu","opis formy",10,10,1);
         Cast cast1 = new Cast(1,"ok",13,true,1,1,1);
         Warehouse warehouse1 = new Warehouse(1,1,1,1000);
-        System.out.println("SIZE: " +cast1.getSize());
-        cworker.proj[0] = project1;
-        lworker.warehouseXD[0] = warehouse1;
-        cworker.warehouseXD[0] = warehouse1;
-        wor.warehouseXD[0] = warehouse1;
+
+        Worker.cast[0]= cast1;
+        Worker.proj[0] = project1;
+        Worker.warehouseXD[0] = warehouse1;
         do {
             System.out.println("Menu: ");
             System.out.println("1 - dodaj pracownika");
@@ -36,6 +35,7 @@ public class Main {
             System.out.println("13 - dodaj projekt");
             System.out.println("14 - wyświetl listę odlewów");
             System.out.println("15 - wyświetl listę projektów");
+            System.out.println("16 - zmien magazyn odlewu");
             Integer menu = scan.nextInt();
             try {
                 switch (menu) {
@@ -82,6 +82,9 @@ public class Main {
                         break;
                     case 15:
                         cworker.showProjectList();
+                        break;
+                    case 16:
+                        lworker.changeStorageLocation();
                         break;
                     default:
                         System.exit(0);

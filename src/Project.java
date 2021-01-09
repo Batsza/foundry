@@ -58,12 +58,8 @@ public class Project {
     }
 
     public void projectList(){
-        System.out.println("Id: " + idProject);
-        System.out.println("Waga: " + weight);
-        System.out.println("wielkosc: " + size);
-        System.out.println("proj det: " + projectDetails);
-        System.out.println("form det: " + formDetails);
-        System.out.println("id materiału "+idMaterial);
+        System.out.println("Id: " + idProject + " | Waga: " + weight + " | wielkosc: " + size + " | proj det: " + projectDetails + " | form det: " + formDetails + " | id materiału "+idMaterial);
+
     }
 
     public int getIdMaterial() {

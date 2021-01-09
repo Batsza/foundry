@@ -6,6 +6,7 @@ public class LogisticWorker extends Worker {
     Scanner scan = new Scanner(System.in);
 
     public void  addNewWarehouse(){
+
         if(numberOfWarehouse == 1){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
             for(int i = numberOfWarehouse; i < warehouseXD.length; i++) {
                 warehouseXD[i] = new Warehouse();
@@ -22,7 +23,6 @@ public class LogisticWorker extends Worker {
     }
 
     public void showWarehouseList(){
-        System.out.println( "warehousee0"+warehouseXD[0]);
         System.out.println("Magazyn:");
         for(int i = 1; i < numberOfWarehouse+1; i++) {
             warehouseXD[i-1].warehouseList();
@@ -30,6 +30,8 @@ public class LogisticWorker extends Worker {
     }
 
     public void  addNewMaterial(){
+        Warehouse warehouseT = new Warehouse();
+
         if(numberOfMaterials == 0){
             for(int i = numberOfMaterials; i < material.length; i++) {
                 material[i] = new Material();
@@ -54,7 +56,15 @@ public class LogisticWorker extends Worker {
         System.out.print("Podaj id magazynu: ");
         Integer f = scan.nextInt();
         material[numberOfMaterials].setIdWarehouse(f);
-        if(!calculateWarehouseCapacity(material[numberOfMaterials],warehouseXD[f-1])){
+        for (int i = 0; i <warehouseXD.length; i++){
+
+            if(warehouseXD[i].getIdWarehouse()== f && warehouseXD[i]!=null ){
+                warehouseT = warehouseXD[i];
+                break;
+            }
+
+        }
+        if(!calculateWarehouseCapacityM(material[numberOfMaterials],warehouseT)){
             System.out.print("zamala pojemnosc");
         }
         numberOfMaterials++;
@@ -67,6 +77,7 @@ public class LogisticWorker extends Worker {
             }
         }
     }
+
 
     protected void deleteMaterial(){
         System.out.print("Podaj id materiału: ");
@@ -96,27 +107,56 @@ public class LogisticWorker extends Worker {
             }
         }
     }
+    public void changeStorageLocation() {
+        Cast castT = new Cast();
+        Warehouse warehouseT = new Warehouse();
+        System.out.print("podaj id odlewu do zmiany: ");
+        Integer a = scan.nextInt();
+        System.out.print("podaj id magazynu docelowego: ");
+        Integer b = scan.nextInt();
 
+        for (int i = 0; i < cast.length; i++) {
+            if (cast[i].getIdCast() == a && cast[i] != null) {
+                castT = cast[i];
+                break;
+            }
+        }
+        for (int i = 0; i < warehouseXD.length; i++) {
+            if (warehouseXD[i].getIdWarehouse() == b && warehouseXD[i] != null) {
+                warehouseT = warehouseXD[i];
+                break;
+            }
+        }
+
+        for (int i = 0; i < warehouseXD.length; i++) {
+            if (warehouseXD[i].getIdWarehouse() == castT.getIdWarehouse()) {// warehouseXD[i] ten z którego wyszukujemy
+                int castVolume = getCastSize(castT) * castT.getAmount();
+                warehouseXD[i].setCapacity(warehouseXD[i].getCapacity() + castVolume);
+                warehouseXD[i].setCastAmount(warehouseXD[i].getCastAmount() - castT.getAmount());
+                  break;
+            }
+
+
+        }
+        if (!calculateWarehouseCapacity(castT, warehouseT)) {
+            System.out.print("zamala pojemnosc");
+        }
+
+
+        castT.setIdWarehouse(b);
+
+    }
 /*
-    public increseMaterial(){
 
-    }
 
-    public changeStorageLocation(){
-
-    }
 
     public showRequestMaterials(){
 
     }
 
-    public requestTransport(){
 
-    }
 
-    public addNewWarehouse(){
 
-    }
 
  */
 }

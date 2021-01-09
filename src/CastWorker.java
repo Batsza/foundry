@@ -6,6 +6,7 @@ public class CastWorker extends Worker {
 
 
     public void  addNewCasting(){
+        Warehouse warehouseT = new Warehouse();
         if(numberOfCast == 1){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
         for(int i = numberOfCast; i < cast.length; i++) {
             cast[i] = new Cast();
@@ -27,17 +28,26 @@ public class CastWorker extends Worker {
         System.out.print("Podaj id projektu: ");
         int e = scan.nextInt();
         cast[numberOfCast].setIdProj(e);
-        /*
+
         for(int i = 0; i < numberOfProject; i++) {
              if(proj[i].getIdProject() == e){
                  cast[numberOfCast].setIdMaterial(proj[i].getIdMaterial());
              };
-        }*/
+        }
         System.out.print("Podaj id magazynu: ");
         int f = scan.nextInt();
         cast[numberOfCast].setIdWarehouse(f);
 
-                if(!calculateWarehouseCapacity(cast[numberOfCast],warehouseXD[f-1],proj[e-1])){
+        for (int i = 0; i <warehouseXD.length; i++){
+
+            if(warehouseXD[i].getIdWarehouse()== f && warehouseXD[i]!=null ){
+                warehouseT = warehouseXD[i];
+                break;
+            }
+
+        }
+
+                if(!calculateWarehouseCapacity(cast[numberOfCast],warehouseT)){
                     System.out.print("zamala pojemnosc");
                 }
 

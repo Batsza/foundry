@@ -57,15 +57,11 @@ public class Cast extends Project {
     }
 
     public void castList(){
-        System.out.println("Id: " + idCast);
-        System.out.println("ilosc: " + amount);
-        System.out.println("status: " + status);
-        System.out.println("Id materiału: "+ idMaterial);
-        System.out.println("Id magazynu" + idWarehouse);
+        System.out.print("Id: " + idCast + " | ilosc: " + amount + " | status: " + status + " | Id materiału: "+ idMaterial + " | Id magazynu: " + idWarehouse);
         if(quality==true)
-            System.out.println("jakosc odpowiednia " );
+            System.out.println(" | jakosc odpowiednia " );
         else
-            System.out.println("jakosc nieodpowiednia " );
+            System.out.println(" | jakosc nieodpowiednia " );
 
     }
 
