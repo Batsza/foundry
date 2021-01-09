@@ -1,13 +1,17 @@
+import java.sql.*;
 import java.util.Scanner;
 
 public class Manager extends Worker {
 
+    public static String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    public static String username = "c##student";
+    public static String password = "student";
     int numberOfWorker = 0;
     Worker[] worker = new Worker[100];
 
     Scanner scan = new Scanner(System.in);
 
-    protected void addWorker() {
+    protected void addWorker() throws ClassNotFoundException, SQLException {
         if(numberOfWorker == 0){
             for(int i = numberOfWorker; i < worker.length; i++) {
                 worker[i] = new Worker();
@@ -20,8 +24,27 @@ public class Manager extends Worker {
         System.out.print("Podaj sekcje pracownika: ");
         Integer b = scan.nextInt();
         worker[numberOfWorker].setSection(b);
+        if(numberOfWorker == 0){
+            for(int i = numberOfWorker; i < worker.length; i++) {
+                worker[i] = new Worker();
+            }
+        }
+
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection conn = DriverManager.getConnection(url, username, password);
+
+        String sql = "INSERT INTO worker (idworker, section) VALUES (?, ?)";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+
+        stmt.setInt(1, worker[numberOfWorker].getIdWorker());
+        stmt.setInt(2, worker[numberOfWorker].getSection());
+        stmt.executeUpdate();
+        //System.out.println(rs.getInt(1)+"  "+rs.getInt(2)+"  "+rs.getInt(3)+"  "+rs.getInt(4));
+
+        conn.close();
         numberOfWorker++;
-        //worker[numberOfWorker-1].workerList();
     }
 
     public void showWorkersList(){
@@ -33,7 +56,7 @@ public class Manager extends Worker {
         }
     }
 
-    protected void deleteWorker(){
+    protected void deleteWorker() throws ClassNotFoundException, SQLException {
         System.out.print("Podaj id pracownika: ");
         Integer c = scan.nextInt();
         for(int i = 0; i < numberOfWorker; i++) {
@@ -42,6 +65,18 @@ public class Manager extends Worker {
                 System.out.println("Pracownik o id: " + c + " został usunięty");
             }
         }
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection conn = DriverManager.getConnection(url, username, password);
+
+        String sql = "DELETE FROM worker where idworker = ?";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+        stmt.setInt(1, c);
+        stmt.executeUpdate();
+        //System.out.println(rs.getInt(1)+"  "+rs.getInt(2));
+
+        conn.close();
         repairArrayObject();
         showWorkersList();
     }
@@ -57,5 +92,30 @@ public class Manager extends Worker {
                 }
             }
         }
+    }
+
+    public void loadWorker() throws ClassNotFoundException, SQLException {
+        String url = "jdbc:oracle:thin:@localhost:1521:xe";
+        String username = "c##student";
+        String password = "student";
+        if(numberOfWorker == 0){
+            for(int i = numberOfWorker; i < worker.length; i++) {
+                worker[i] = new Worker();
+            }
+        }
+
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection conn = DriverManager.getConnection(url, username, password);
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from worker");
+
+        while(rs.next()){
+            worker[numberOfWorker].setIdWorker(rs.getInt(1));
+            worker[numberOfWorker].setSection(rs.getInt(2));
+            numberOfWorker++;
+        }
+
+        //System.out.println(rs.getInt(1)+"  "+rs.getInt(2)+"  "+rs.getInt(3)+"  "+rs.getInt(4));
+        conn.close();
     }
 }

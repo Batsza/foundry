@@ -1,7 +1,8 @@
+import java.sql.SQLException;
 import java.util.*;
 
 public class Main {
-    public static void main (String[] args) {
+    public static void main (String[] args) throws SQLException, ClassNotFoundException {
         Manager manager = new Manager();
         LogisticWorker lworker = new LogisticWorker();
         ShippingWorker sworker = new ShippingWorker();
@@ -18,6 +19,7 @@ public class Main {
         Worker.cast[0]= cast1;
         Worker.proj[0] = project1;
         Worker.warehouseXD[0] = warehouse1;
+        manager.loadWorker();
         do {
             System.out.println("Menu: ");
             System.out.println("1 - dodaj pracownika");
