@@ -38,6 +38,8 @@ public class Main {
             System.out.println("14 - wyświetl listę odlewów");
             System.out.println("15 - wyświetl listę projektów");
             System.out.println("16 - zmien magazyn odlewu");
+            System.out.println("17 - dodaj forme");
+            System.out.println("18 - wyświetl listę form");
             Integer menu = scan.nextInt();
             try {
                 switch (menu) {
@@ -87,6 +89,12 @@ public class Main {
                         break;
                     case 16:
                         lworker.changeStorageLocation();
+                        break;
+                    case 17:
+                        cworker.addNewForm();
+                        break;
+                    case 18:
+                        cworker.showFormList();
                         break;
                     default:
                         System.exit(0);

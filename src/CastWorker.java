@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class CastWorker extends Worker {
     int numberOfProject = 1; //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
     int numberOfCast = 1; //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
+    int numberOfForm = 0;
 
 
     public void  addNewCasting(){
@@ -99,6 +100,36 @@ public class CastWorker extends Worker {
         proj[numberOfProject].setIdMaterial(f);
         numberOfProject++;
     }
+    public void  addNewForm(){
+        Warehouse warehouseT = new Warehouse();
+        if(numberOfForm == 0){
+            for(int i = numberOfForm; i < form.length; i++) {
+                form[i] = new Form();
+            }
+        }
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Podaj id formy: ");
+        Integer a = scan.nextInt();
+        form[numberOfForm].setIdForm(a);
+        System.out.print("Podaj typ: ");
+        String b = scan.next();
+        form[numberOfForm].setType(b);
+        System.out.print("Podaj możliwość urzyć : ");
+        Integer c = scan.nextInt();
+        form[numberOfForm].setMultiUse(c);
+        System.out.print("Podaj id projektu: ");
+        int e = scan.nextInt();
+        form[numberOfForm].setIdProj(e);
+
+        numberOfForm++;
+    }
+    public void showFormList(){
+        for(int i = 1; i < numberOfForm+1; i++) {
+            System.out.println("Cast ");
+            form[i-1].formList();
+        }
+    }
+
 /*
     public requestMaterials(){
 

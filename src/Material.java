@@ -6,6 +6,17 @@ public class Material {
     private int price;
     private int idWarehouse;
 
+    public Material(){}
+    public Material(int idMaterial,String name,int size, int amount, int price,int idWarehouse){
+        this.setIdMaterial(idMaterial);
+        this.setName(name);
+        this.setSize(size);
+        this.setAmount(amount);
+        this.setPrice(price);
+        this.setIdWarehouse(idWarehouse);
+
+    }
+
     public int getIdMaterial() {
         return idMaterial;
     }

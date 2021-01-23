@@ -4,8 +4,13 @@ public class Worker {
     static public Project[] proj = new Project[5];
     static public Cast[] cast = new Cast[5];
     static public Warehouse[] warehouseXD = new Warehouse[5];
+    static public Form[] form = new Form[5];
     int numberOfWarehouse = 1; //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
-
+    public Worker(){}
+    public Worker(int idWorker, int section){
+        this.setIdWorker(idWorker);
+        this.setSection(section);
+    }
 
 
     public int getIdWorker() {
@@ -80,6 +85,7 @@ public class Worker {
         }
         return -1;
     }
+
     public static int getCastWeight(Cast cast){
         for (int i = 0; i < proj.length;i++){
             if(proj[i].getIdProject() == cast.getIdProj())
