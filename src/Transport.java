@@ -2,15 +2,15 @@
 public class Transport {
     private int idTransport;
     private int capacity;
-    private int availableweight;
+    private int availableWeight;
     private int idCast;
     private boolean status;
 
     public Transport(){}
-    public Transport(int idTransport, int capacity, int availableweight, int idCast, boolean status){
+    public Transport(int idTransport, int capacity, int availableWeight, int idCast, boolean status){
         this.setIdTransport(idTransport);
         this.setCapacity(capacity);
-        this.setAvailableweight(availableweight);
+        this.setAvailableWeight(availableWeight);
         this.setIdCast(idCast);
         this.setStatus(status);
     }
@@ -30,16 +30,16 @@ public class Transport {
         this.capacity = capacity;
     }
 
-    public int getAvailableweight() {
-        return availableweight;
+    public int getAvailableWeight() {
+        return availableWeight;
     }
 
-    public void setAvailableweight(int availableweight) {
-        this.availableweight = availableweight;
+    public void setAvailableWeight(int availableWeight) {
+        this.availableWeight = availableWeight;
     }
 
     public void transportList(){
-        System.out.println("Id: " + idTransport + " | ilosc: " + capacity + " | waga: " + availableweight);
+        System.out.println("Id: " + idTransport + " | ilosc: " + capacity + " | waga: " + availableWeight);
     }
 
     public int getIdCast() {

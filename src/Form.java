@@ -2,15 +2,16 @@ public class Form {
     private int idForm;
     private String type;
     private int multiUse;
-    private int idProj;
-    private int idWarehouse;
+    private int idProject;
+
     public Form(){ }
-    public Form(int idForm, String type, int multiUse) {
+
+    public Form(int idForm, String type, int multiUse, int idProject) {
         this.setIdForm(idForm);
         this.setType(type);
         this.setMultiUse(multiUse);
+        this.setIdProject(idProject);
     }
-
 
     public int getIdForm() {
         return idForm;
@@ -37,22 +38,16 @@ public class Form {
     }
 
     public void formList(){
-        System.out.println("Id: " + idForm +" | typ: " + type + " | ilość  użyć : " + multiUse );
+        System.out.println("Id: " + idForm +" | typ: " + type + " | ilość użyć : " + multiUse );
     }
 
-    public int getIdProj() {
-        return idProj;
+    public int getIdProject() {
+        return idProject;
     }
 
-    public void setIdProj(int idProj) {
-        this.idProj = idProj;
+    public void setIdProject(int idProject) {
+        this.idProject = idProject;
     }
 
-    public int getIdWarehouse() {
-        return idWarehouse;
-    }
 
-    public void setIdWarehouse(int idWarehouse) {
-        this.idWarehouse = idWarehouse;
-    }
 }
