@@ -11,13 +11,8 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
 
-        ///tepm//
-        Project project1 = new Project(1,"opis projektu","opis formy",10,10,1);
-        Cast cast1 = new Cast(1,"ok",13,true,1,1,1);
         Warehouse warehouse1 = new Warehouse(1,1,1,1000);
 
-        Worker.cast[0]= cast1;
-        Worker.proj[0] = project1;
         Worker.warehouseXD[0] = warehouse1;
         manager.loadWorker();
         lworker.loadMaterial();
@@ -41,6 +36,9 @@ public class Main {
             System.out.println("16 - zmien magazyn odlewu");
             System.out.println("17 - dodaj forme");
             System.out.println("18 - wyświetl listę form");
+            System.out.println("19 - usuń odlew");
+            System.out.println("20 - usuń projekt");
+            System.out.println("21 - usuń forme");
             Integer menu = scan.nextInt();
             try {
                 switch (menu) {
@@ -96,6 +94,15 @@ public class Main {
                         break;
                     case 18:
                         cworker.showFormList();
+                        break;
+                    case 19:
+                        cworker.deleteCast();
+                        break;
+                    case 20:
+                        cworker.deleteProject();
+                        break;
+                    case 21:
+                        cworker.deleteForm();
                         break;
                     default:
                         System.exit(0);

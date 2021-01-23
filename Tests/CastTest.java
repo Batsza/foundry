@@ -57,7 +57,7 @@ class CastTest {
     @Test
     void isQuality() {
         Cast cast1 = new Cast(1,"ok",13,true,1,1,1);
-        assertTrue(cast1.isQuality());
+        assertTrue(cast1.getQuality());
 
     }
 
@@ -65,7 +65,7 @@ class CastTest {
     void setQuality() {
         Cast cast1 = new Cast(1,"ok",13,true,1,1,1);
         cast1.setQuality(false);
-        assertFalse(cast1.isQuality());
+        assertFalse(cast1.getQuality());
     }
 
     @Test

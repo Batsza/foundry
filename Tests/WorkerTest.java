@@ -35,7 +35,7 @@ class WorkerTest {
         Cast cast1 = new Cast(1, "ok", 13, true, 1, 1, 1);
         Project project1 = new Project(1, "opis projektu", "opis formy", 10, 20, 1);
         Worker.cast[0]= cast1;
-        Worker.proj[0] = project1;
+        Worker.project[0] = project1;
         assertEquals(20, Worker.getCastSize(cast1));
     }
 
@@ -52,7 +52,7 @@ class WorkerTest {
         Cast cast1 = new Cast(1, "ok", 13, true, 1, 1, 1);
         Project project1 = new Project(1, "opis projektu", "opis formy", 10, 20, 1);
         Worker.cast[0]= cast1;
-        Worker.proj[0] = project1;
+        Worker.project[0] = project1;
         Warehouse warehouse1 = new Warehouse(1,41,71,1000);
         assertTrue(Worker.calculateWarehouseCapacity(cast1,warehouse1));
     }
@@ -62,7 +62,7 @@ class WorkerTest {
         Cast cast1 = new Cast(1, "ok", 13, true, 1, 1, 1);
         Project project1 = new Project(1, "opis projektu", "opis formy", 10, 20, 1);
         Worker.cast[0]= cast1;
-        Worker.proj[0] = project1;
+        Worker.project[0] = project1;
         assertEquals(10, Worker.getCastWeight(cast1));
     }
 }
