@@ -1,14 +1,19 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CastWorker extends Worker {
-    int numberOfProject = 1; //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
-    int numberOfCast = 1; //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
+    int numberOfProject = 0;
+    int numberOfCast = 0;
     int numberOfForm = 0;
 
+    Scanner scan = new Scanner(System.in);
 
     public void  addNewCasting(){
         Warehouse warehouseT = new Warehouse();
-        if(numberOfCast == 1){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
+        if(numberOfCast == 0){
         for(int i = numberOfCast; i < cast.length; i++) {
             cast[i] = new Cast();
         }
@@ -31,8 +36,8 @@ public class CastWorker extends Worker {
         cast[numberOfCast].setIdProj(e);
 
         for(int i = 0; i < numberOfProject; i++) {
-             if(proj[i].getIdProject() == e){
-                 cast[numberOfCast].setIdMaterial(proj[i].getIdMaterial());
+             if(project[i].getIdProject() == e){
+                 cast[numberOfCast].setIdMaterial(project[i].getIdMaterial());
              };
         }
         System.out.print("Podaj id magazynu: ");
@@ -48,60 +53,122 @@ public class CastWorker extends Worker {
 
         }
 
-                if(!calculateWarehouseCapacity(cast[numberOfCast],warehouseT)){
-                    System.out.print("zamala pojemnosc");
-                }
+        if(!calculateWarehouseCapacity(cast[numberOfCast],warehouseT)) {
+            System.out.print("zamala pojemnosc");
+        }
 
         numberOfCast++;
     }
 
+    protected void deleteCast() {
+        System.out.print("Podaj id odlewu: ");
+        Integer c = scan.nextInt();
+        for(int i = 0; i < numberOfCast; i++) {
+            if(cast[i].getIdCast() == c){
+                cast[i] = new Cast();
+                System.out.println("Odlew o id: " + c + " został usunięty");
+            }
+        }
 
+        repairArrayObjectCast();
+    }
 
-    public void showCastList(){
-        for(int i = 1; i < numberOfCast+1; i++) {
-            System.out.println("Cast ");
-             cast[i-1].castList();
+    void repairArrayObjectCast(){
+        for(int i = 0; i < numberOfCast; i++) {
+            if(cast[i].getIdCast() == 0){
+                if((i+1) < numberOfCast){
+                    for(int j = i; j < numberOfCast; j++){
+                        cast[j].setIdCast(cast[j+1].getIdCast());
+                        cast[j].setAmount(cast[j+1].getAmount());
+                        cast[j].setQuality(cast[j+1].getQuality());
+                        cast[j].setStatus(cast[j+1].getStatus());
+                        cast[j].setIdProj(cast[j+1].getIdProj());
+                        cast[j].setIdWarehouse(cast[j+1].getIdWarehouse());
+                    }
+                }
+            }
         }
     }
 
-    public void showProjectList(){
-        for(int i = 1; i < numberOfProject+1; i++) {
-            System.out.println("Project ");
-            proj[i-1].projectList();
+    public void showCastList(){
+        System.out.println("Lista odlewów: ");
+        for(int i = 1; i < numberOfCast+1; i++) {
+            if(cast[i-1].getIdCast() > 0) {
+                cast[i - 1].castList();
+            }
         }
     }
 
     public void addNewProject(){
-        if(numberOfProject == 1){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
-            for(int i = numberOfProject; i < proj.length; i++) {
-                proj[i] = new Project();
+        if(numberOfProject == 0){ //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
+            for(int i = numberOfProject; i < project.length; i++) {
+                project[i] = new Project();
             }
         }
         Scanner scan = new Scanner(System.in);
 
         System.out.print("Podaj id projektu: ");
         Integer a = scan.nextInt();
-        proj[numberOfProject].setIdProject(a);
+        project[numberOfProject].setIdProject(a);
         System.out.print("Podaj wage: ");
         Integer b = scan.nextInt();
-        proj[numberOfProject].setWeight(b);
+        project[numberOfProject].setWeight(b);
         System.out.print("Podaj wielkosc: ");
         Integer c = scan.nextInt();
-        proj[numberOfProject].setSize(c);
+        project[numberOfProject].setSize(c);
         System.out.print("Podaj opis projektu: ");
         scan.nextLine();
         String d = scan.nextLine();
-        proj[numberOfProject].setProjectDetails(d);
+        project[numberOfProject].setProjectDetails(d);
         System.out.print("Podaj opis formy: ");
         String e = scan.nextLine();
-        proj[numberOfProject].setFormDetails(e);
+        project[numberOfProject].setFormDetails(e);
         System.out.println("Podaj id materiału");
         int f = scan.nextInt();
-        proj[numberOfProject].setIdMaterial(f);
+        project[numberOfProject].setIdMaterial(f);
         numberOfProject++;
     }
-    public void  addNewForm(){
-        Warehouse warehouseT = new Warehouse();
+
+    protected void deleteProject() {
+        System.out.print("Podaj id projektu: ");
+        Integer c = scan.nextInt();
+        for(int i = 0; i < numberOfProject; i++) {
+            if(project[i].getIdProject() == c){
+                project[i] = new Project();
+                System.out.println("Projekt o id: " + c + " został usunięty");
+            }
+        }
+
+        repairArrayObjectProject();
+    }
+
+    void repairArrayObjectProject(){
+        for(int i = 0; i < numberOfProject; i++) {
+            if(project[i].getIdProject() == 0){
+                if((i+1) < numberOfProject){
+                    for(int j = i; j < numberOfProject; j++){
+                        project[j].setIdProject(project[j+1].getIdProject());
+                        project[j].setWeight(project[j+1].getWeight());
+                        project[j].setSize(project[j+1].getSize());
+                        project[j].setProjectDetails(project[j+1].getProjectDetails());
+                        project[j].setFormDetails(project[j+1].getFormDetails());
+                        project[j].setIdMaterial(project[j+1].getIdMaterial());
+                    }
+                }
+            }
+        }
+    }
+
+    public void showProjectList(){
+        System.out.println("Lista projektów: ");
+        for(int i = 1; i < numberOfProject+1; i++) {
+            if(project[i-1].getIdProject() > 0) {
+                project[i - 1].projectList();
+            }
+        }
+    }
+
+    public void addNewForm(){
         if(numberOfForm == 0){
             for(int i = numberOfForm; i < form.length; i++) {
                 form[i] = new Form();
@@ -118,15 +185,46 @@ public class CastWorker extends Worker {
         Integer c = scan.nextInt();
         form[numberOfForm].setMultiUse(c);
         System.out.print("Podaj id projektu: ");
-        int e = scan.nextInt();
-        form[numberOfForm].setIdProj(e);
+        int d = scan.nextInt();
+        form[numberOfForm].setIdProject(d);
 
         numberOfForm++;
     }
+
+    protected void deleteForm() {
+        System.out.print("Podaj id formy: ");
+        Integer c = scan.nextInt();
+        for(int i = 0; i < numberOfForm; i++) {
+            if(form[i].getIdForm() == c){
+                form[i] = new Form();
+                System.out.println("Forma o id: " + c + " została usunięta");
+            }
+        }
+
+        repairArrayObjectForm();
+    }
+
+    void repairArrayObjectForm(){
+        for(int i = 0; i < numberOfForm; i++) {
+            if(form[i].getIdForm() == 0){
+                if((i+1) < numberOfForm){
+                    for(int j = i; j < numberOfForm; j++){
+                        form[j].setIdForm(form[j+1].getIdForm());
+                        form[j].setType(form[j+1].getType());
+                        form[j].setMultiUse(form[j+1].getMultiUse());
+                        form[j].setIdProject(form[j+1].getIdProject());
+                    }
+                }
+            }
+        }
+    }
+
     public void showFormList(){
+        System.out.println("Lista projektów: ");
         for(int i = 1; i < numberOfForm+1; i++) {
-            System.out.println("Cast ");
-            form[i-1].formList();
+            if(form[i-1].getIdForm() > 0) {
+                form[i - 1].formList();
+            }
         }
     }
 

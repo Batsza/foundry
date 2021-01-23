@@ -48,7 +48,7 @@ public class Cast extends Project {
         this.status = status;
     }
 
-    public boolean isQuality() {
+    public boolean getQuality() {
         return quality;
     }
 
