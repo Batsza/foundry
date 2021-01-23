@@ -123,6 +123,7 @@ public class LogisticWorker extends Worker {
         //System.out.println(rs.getInt(1)+"  "+rs.getInt(2));
 
         conn.close();
+        //loadMaterial();
         numberOfMaterials--;
         repairArrayObject();
     }
@@ -186,6 +187,7 @@ public class LogisticWorker extends Worker {
         String url = "jdbc:oracle:thin:@localhost:1521:xe";
         String username = "c##student";
         String password = "student";
+
         if(numberOfMaterials == 0){
             for(int i = numberOfMaterials; i < material.length; i++) {
                 material[i] = new Material();

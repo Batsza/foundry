@@ -3,19 +3,19 @@ public class Cast extends Project {
     private int idCast;
     private String status;
     private int amount;
-    private boolean quality;
+    private String quality;
     private int idWarehouse;
-    private int idProj;
+    private int idProject;
 
     public Cast(){ }
-    public Cast(int idCast,String status,int amount,boolean quality, int idMaterial, int idWarehouse,int idProj){
+    public Cast(int idCast, String status, int amount, String quality, int idMaterial, int idWarehouse,int idProject){
         this.setIdCast(idCast);
         this.setStatus(status);
         this.setAmount(amount);
         this.setQuality(quality);
         this.setIdMaterial(idMaterial);
         this.setIdWarehouse(idWarehouse);
-        this.setIdProj(idProj);
+        this.setIdProject(idProject);
     }
 
 
@@ -48,21 +48,16 @@ public class Cast extends Project {
         this.status = status;
     }
 
-    public boolean isQuality() {
+    public String getQuality() {
         return quality;
     }
 
-    public void setQuality(boolean quality) {
+    public void setQuality(String quality) {
         this.quality = quality;
     }
 
     public void castList(){
-        System.out.print("Id: " + idCast + " | ilosc: " + amount + " | status: " + status + " | Id materiału: "+ idMaterial + " | Id magazynu: " + idWarehouse);
-        if(quality==true)
-            System.out.println(" | jakosc odpowiednia " );
-        else
-            System.out.println(" | jakosc nieodpowiednia " );
-
+        System.out.println("Id: " + idCast + " | ilosc: " + amount + " | status: " + status + " | Id materiału: "+ idMaterial + " | Id magazynu: " + idWarehouse + " | jakosc: " + quality);
     }
 
     public int getIdWarehouse() {
@@ -73,12 +68,12 @@ public class Cast extends Project {
         this.idWarehouse = idWarehouse;
     }
 
-    public int getIdProj() {
-        return idProj;
+    public int getIdProject() {
+        return idProject;
     }
 
-    public void setIdProj(int idProj) {
-        this.idProj = idProj;
+    public void setIdProject(int idProj) {
+        this.idProject = idProj;
     }
 
 

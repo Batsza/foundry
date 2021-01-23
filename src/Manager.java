@@ -44,14 +44,13 @@ public class Manager extends Worker {
         //System.out.println(rs.getInt(1)+"  "+rs.getInt(2)+"  "+rs.getInt(3)+"  "+rs.getInt(4));
 
         conn.close();
-        loadWorker();
         numberOfWorker++;
     }
 
     public void showWorkersList(){
         System.out.println("Lista pracowników: ");
         for(int i = 1; i < numberOfWorker+1; i++) {
-            if(worker[i-1].getIdWorker() != 0) {
+            if(worker[i-1].getIdWorker() > 0) {
                 worker[i - 1].workerList();
             }
         }
@@ -78,7 +77,7 @@ public class Manager extends Worker {
         //System.out.println(rs.getInt(1)+"  "+rs.getInt(2));
 
         conn.close();
-        loadWorker();
+        //loadWorker();
         repairArrayObject();
         showWorkersList();
     }

@@ -1,10 +1,11 @@
 public class Worker {
     private int idWorker;
     private int section;
-    static public Project[] proj = new Project[5];
-    static public Cast[] cast = new Cast[5];
-    static public Warehouse[] warehouseXD = new Warehouse[5];
-    static public Form[] form = new Form[5];
+    static public Project[] project = new Project[100];
+    static public Cast[] cast = new Cast[100];
+    static public Warehouse[] warehouseXD = new Warehouse[100];
+    static public Form[] form = new Form[100];
+    static public Warehouse[] warehouse = new Warehouse[100];
     int numberOfWarehouse = 1; //jak się usunie z maina to co jest dane z bomby to 1 zmienic na 0
     public Worker(){}
     public Worker(int idWorker, int section){
@@ -79,17 +80,17 @@ public class Worker {
     }*/
 
     public static int getCastSize(Cast cast){
-        for (int i = 0; i < proj.length;i++){
-            if(proj[i].getIdProject() == cast.getIdProj())
-                return proj[i].getSize();
+        for (int i = 0; i < project.length;i++){
+            if(project[i].getIdProject() == cast.getIdProject())
+                return project[i].getSize();
         }
         return -1;
     }
 
     public static int getCastWeight(Cast cast){
-        for (int i = 0; i < proj.length;i++){
-            if(proj[i].getIdProject() == cast.getIdProj())
-                return proj[i].getWeight();
+        for (int i = 0; i < project.length;i++){
+            if(project[i].getIdProject() == cast.getIdProject())
+                return project[i].getWeight();
         }
         return -1;
     }
