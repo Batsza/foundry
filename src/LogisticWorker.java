@@ -1,6 +1,10 @@
+import java.sql.*;
 import java.util.Scanner;
 
 public class LogisticWorker extends Worker {
+    public static String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    public static String username = "c##student";
+    public static String password = "student";
     int numberOfMaterials = 0;
     Material[] material = new Material[100];
     Scanner scan = new Scanner(System.in);
@@ -29,7 +33,7 @@ public class LogisticWorker extends Worker {
         }
     }
 
-    public void  addNewMaterial(){
+    public void  addNewMaterial() throws ClassNotFoundException, SQLException {
         Warehouse warehouseT = new Warehouse();
 
         if(numberOfMaterials == 0){
@@ -67,6 +71,25 @@ public class LogisticWorker extends Worker {
         if(!calculateWarehouseCapacityM(material[numberOfMaterials],warehouseT)){
             System.out.print("zamala pojemnosc");
         }
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection conn = DriverManager.getConnection(url, username, password);
+
+        String sql = "INSERT INTO material " + " VALUES (?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+
+        stmt.setInt(1, material[numberOfMaterials].getIdMaterial());
+        stmt.setString(2, material[numberOfMaterials].getName());
+        stmt.setInt(3, material[numberOfMaterials].getSize());
+        stmt.setInt(4, material[numberOfMaterials].getAmount());
+        stmt.setInt(5, material[numberOfMaterials].getPrice());
+        stmt.setInt(6, material[numberOfMaterials].getIdWarehouse());
+
+        stmt.executeUpdate();
+        //System.out.println(rs.getInt(1)+"  "+rs.getInt(2)+"  "+rs.getInt(3)+"  "+rs.getInt(4));
+
+        conn.close();
         numberOfMaterials++;
     }
     public void showMaterialList(){
@@ -79,7 +102,7 @@ public class LogisticWorker extends Worker {
     }
 
 
-    protected void deleteMaterial(){
+    protected void deleteMaterial() throws ClassNotFoundException, SQLException {
         System.out.print("Podaj id materiału: ");
         Integer c = scan.nextInt();
         for(int i = 0; i < numberOfMaterials; i++) {
@@ -88,6 +111,18 @@ public class LogisticWorker extends Worker {
                 System.out.println("Materiał o id: " + c + " został usunięty");
             }
         }
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection conn = DriverManager.getConnection(url, username, password);
+
+        String sql = "DELETE FROM material where idmaterial = ?";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+        stmt.setInt(1, c);
+        stmt.executeUpdate();
+        //System.out.println(rs.getInt(1)+"  "+rs.getInt(2));
+
+        conn.close();
         numberOfMaterials--;
         repairArrayObject();
     }
@@ -146,18 +181,40 @@ public class LogisticWorker extends Worker {
         castT.setIdWarehouse(b);
 
     }
-/*
 
+    public void loadMaterial() throws ClassNotFoundException, SQLException {
+        String url = "jdbc:oracle:thin:@localhost:1521:xe";
+        String username = "c##student";
+        String password = "student";
+        if(numberOfMaterials == 0){
+            for(int i = numberOfMaterials; i < material.length; i++) {
+                material[i] = new Material();
+            }
+        }
 
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection conn = DriverManager.getConnection(url, username, password);
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from MATERIAL");
 
+        while(rs.next()){
+            material[numberOfMaterials].setIdMaterial(rs.getInt(1));
+            material[numberOfMaterials].setName(rs.getString(2));
+            material[numberOfMaterials].setSize(rs.getInt(3));
+            material[numberOfMaterials].setAmount(rs.getInt(4));
+            material[numberOfMaterials].setPrice(rs.getInt(5));
+            material[numberOfMaterials].setIdWarehouse(rs.getInt(6));
+            numberOfMaterials++;
+        }
+
+        //System.out.println(rs.getInt(1)+"  "+rs.getInt(2)+"  "+rs.getInt(3)+"  "+rs.getInt(4));
+        conn.close();
+    }
+
+    /*
     public showRequestMaterials(){
 
     }
-
-
-
-
-
- */
+    */
 }
 

@@ -20,6 +20,7 @@ public class Main {
         Worker.proj[0] = project1;
         Worker.warehouseXD[0] = warehouse1;
         manager.loadWorker();
+        lworker.loadMaterial();
         do {
             System.out.println("Menu: ");
             System.out.println("1 - dodaj pracownika");
