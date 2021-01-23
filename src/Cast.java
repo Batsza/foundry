@@ -8,6 +8,7 @@ public class Cast extends Project {
     private int idProject;
 
     public Cast(){ }
+
     public Cast(int idCast, String status, int amount, String quality, int idMaterial, int idWarehouse,int idProject){
         this.setIdCast(idCast);
         this.setStatus(status);

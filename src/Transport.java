@@ -7,6 +7,7 @@ public class Transport {
     private boolean status;
 
     public Transport(){}
+
     public Transport(int idTransport, int capacity, int availableWeight, int idCast, boolean status){
         this.setIdTransport(idTransport);
         this.setCapacity(capacity);
@@ -14,6 +15,7 @@ public class Transport {
         this.setIdCast(idCast);
         this.setStatus(status);
     }
+
     public int getIdTransport() {
         return idTransport;
     }

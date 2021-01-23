@@ -6,12 +6,13 @@ public class Worker {
     static public Warehouse[] warehouse = new Warehouse[100];
     static public Form[] form = new Form[100];
     int numberOfWarehouse = 0;
+
     public Worker(){}
+
     public Worker(int idWorker, int section){
         this.setIdWorker(idWorker);
         this.setSection(section);
     }
-
 
     public int getIdWorker() {
         return idWorker;
