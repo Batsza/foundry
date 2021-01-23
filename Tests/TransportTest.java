@@ -34,14 +34,14 @@ class TransportTest {
     @Test
     void getAvailableweight() {
         Transport transport  = new Transport(1, 1000, 500, 2, true);
-        assertEquals(500 , transport.getAvailableweight());
+        assertEquals(500 , transport.getAvailableWeight());
     }
 
     @Test
     void setAvailableweight() {
         Transport transport  = new Transport(1, 1000, 500, 2, true);
-        transport.setAvailableweight(666);
-        assertEquals(666 , transport.getAvailableweight());
+        transport.setAvailableWeight(666);
+        assertEquals(666 , transport.getAvailableWeight());
     }
 
     @Test

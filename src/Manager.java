@@ -37,21 +37,18 @@ public class Manager extends Worker {
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-
         stmt.setInt(1, worker[numberOfWorker].getIdWorker());
         stmt.setInt(2, worker[numberOfWorker].getSection());
         stmt.executeUpdate();
-        //System.out.println(rs.getInt(1)+"  "+rs.getInt(2)+"  "+rs.getInt(3)+"  "+rs.getInt(4));
 
         conn.close();
-        loadWorker();
         numberOfWorker++;
     }
 
     public void showWorkersList(){
         System.out.println("Lista pracowników: ");
         for(int i = 1; i < numberOfWorker+1; i++) {
-            if(worker[i-1].getIdWorker() != 0) {
+            if(worker[i-1].getIdWorker() > 0) {
                 worker[i - 1].workerList();
             }
         }
@@ -75,15 +72,12 @@ public class Manager extends Worker {
 
         stmt.setInt(1, c);
         stmt.executeUpdate();
-        //System.out.println(rs.getInt(1)+"  "+rs.getInt(2));
 
         conn.close();
-        loadWorker();
-        repairArrayObject();
-        showWorkersList();
+        repairArrayObjectWorker();
     }
 
-    void repairArrayObject(){
+    void repairArrayObjectWorker(){
         for(int i = 0; i < numberOfWorker; i++) {
             if(worker[i].getIdWorker() == 0){
                 if((i+1) < numberOfWorker){
@@ -117,7 +111,6 @@ public class Manager extends Worker {
             numberOfWorker++;
         }
 
-        //System.out.println(rs.getInt(1)+"  "+rs.getInt(2)+"  "+rs.getInt(3)+"  "+rs.getInt(4));
         conn.close();
     }
 }

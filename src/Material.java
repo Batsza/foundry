@@ -7,6 +7,7 @@ public class Material {
     private int idWarehouse;
 
     public Material(){}
+
     public Material(int idMaterial,String name,int size, int amount, int price,int idWarehouse){
         this.setIdMaterial(idMaterial);
         this.setName(name);
@@ -58,7 +59,7 @@ public class Material {
     }
 
     public void materialList(){
-        System.out.println("Id: " + idMaterial + " | nazwa: " + name +  " | waga: " + amount + " | ilość: " + amount + " | cena: " + price + " | idwarehouse: " + idWarehouse);
+        System.out.println("Id: " + idMaterial + " | nazwa: " + name +  " | waga: " + size + " | ilość: " + amount + " | cena: " + price + " | idwarehouse: " + idWarehouse);
     }
 
     public int getIdWarehouse() {
