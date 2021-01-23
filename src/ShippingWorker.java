@@ -123,13 +123,13 @@ public class ShippingWorker extends Worker {
         }
     }
 
-    public void showTransportList(){
-        System.out.println("Lista transportu: ");
+    public String showTransportList(){
+
+        String text ="Transport: \n";
         for(int i = 1; i < numberOfTransport+1; i++) {
-            if(transports[i-1].getIdTransport() > 0) {
-                transports[i - 1].transportList();
-            }
+            text += transports[i-1].transportList();
         }
+        return text;
     }
 
     public void loadTransport() throws ClassNotFoundException, SQLException {

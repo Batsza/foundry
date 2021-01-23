@@ -46,8 +46,8 @@ public class Warehouse {
         this.capacity = capacity;
     }
 
-    public void warehouseList(){
-        System.out.println("Id: " + idWarehouse +" | ilosc odlewu: " + castAmount + " | ilosc materiału: " + materials + " | pojemnosc: " + capacity);
+    public String warehouseList(){
+        return ("Id: " + idWarehouse +" | ilosc odlewu: " + castAmount + " | ilosc materiału: " + materials + " | pojemnosc: " + capacity + "\n");
     }
 /*
 

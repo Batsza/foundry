@@ -30,9 +30,7 @@ public class Worker {
         this.section = section;
     }
 
-    public void workerList(){
-        System.out.println("Id: " + idWorker + " | sekcja: " + section);
-    }
+    public String workerList(){return ("Id: " + idWorker + " | sekcja: " + section + "\n");}
 
     static public boolean calculateWarehouseCapacity(Cast cast, Warehouse warehouse){
 

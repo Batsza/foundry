@@ -77,13 +77,14 @@ public class LogisticWorker extends Worker {
         }
     }
 
-    public void showWarehouseList(){
-        System.out.println("Lista odlewów: ");
+    public String showWarehouseList(){
+        String text ="Magazyn: \n";
         for(int i = 1; i < numberOfWarehouse+1; i++) {
             if(warehouse[i-1].getIdWarehouse() > 0) {
-                warehouse[i - 1].warehouseList();
+                text+= warehouse[i - 1].warehouseList();
             }
         }
+        return text;
     }
 
     public void loadWarehouse() throws ClassNotFoundException, SQLException {
@@ -212,13 +213,14 @@ public class LogisticWorker extends Worker {
         }
     }
 
-    public void showMaterialList(){
-        System.out.println("Materiały: ");
+    public String showMaterialList(){
+        String text =("Materiały: ");
         for(int i = 1; i < numberOfMaterials+1; i++) {
             if(material[i-1].getIdMaterial() > 0) {
-                material[i-1].materialList();
+                text += material[i-1].materialList();
             }
         }
+        return text;
     }
 
     public void loadMaterial() throws ClassNotFoundException, SQLException {

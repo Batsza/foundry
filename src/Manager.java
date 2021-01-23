@@ -45,13 +45,14 @@ public class Manager extends Worker {
         numberOfWorker++;
     }
 
-    public void showWorkersList(){
-        System.out.println("Lista pracowników: ");
+    public String showWorkersList(){
+        String text = "Lista pracowników: \n";
         for(int i = 1; i < numberOfWorker+1; i++) {
             if(worker[i-1].getIdWorker() > 0) {
-                worker[i - 1].workerList();
+                text += worker[i - 1].workerList();
             }
         }
+        return text;
     }
 
     protected void deleteWorker() throws ClassNotFoundException, SQLException {

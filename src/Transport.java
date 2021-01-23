@@ -40,8 +40,8 @@ public class Transport {
         this.availableWeight = availableWeight;
     }
 
-    public void transportList(){
-        System.out.println("Id: " + idTransport + " | ilosc: " + capacity + " | waga: " + availableWeight);
+    public String transportList(){
+        return ("Id: " + idTransport + " | ilosc: " + capacity + " | waga: " + availableWeight + "\n");
     }
 
     public int getIdCast() {
@@ -59,13 +59,6 @@ public class Transport {
     public void setStatus(boolean status) {
         this.status = status;
     }
-/*
-    public showTransportInformations(){
 
-    }
-
-    public static findTransport(){
-
-    }*/
 }
 

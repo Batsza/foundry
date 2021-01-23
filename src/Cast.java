@@ -55,8 +55,8 @@ public class Cast extends Project {
         this.quality = quality;
     }
 
-    public void castList(){
-        System.out.println("Id: " + idCast + " | ilosc: " + amount + " | status: " + status + " | Id materiału: "+ idMaterial + " | Id magazynu: " + idWarehouse + " | jakosc: " + quality);
+    public String castList(){
+        return ("Id: " + idCast + " | ilosc: " + amount + " | status: " + status + " | Id materiału: "+ idMaterial + " | Id magazynu: " + idWarehouse + " | jakosc: " + quality + "\n");
     }
 
     public int getIdWarehouse() {

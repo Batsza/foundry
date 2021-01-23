@@ -37,10 +37,9 @@ public class Form {
         this.multiUse = multiUse;
     }
 
-    public void formList(){
-        System.out.println("Id: " + idForm +" | typ: " + type + " | ilość użyć : " + multiUse );
+    public String formList(){
+        return ("Id: " + idForm +" | typ: " + type + " | ilość użyć : " + multiUse );
     }
-
     public int getIdProject() {
         return idProject;
     }

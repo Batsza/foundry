@@ -58,8 +58,8 @@ public class Material {
         this.price = price;
     }
 
-    public void materialList(){
-        System.out.println("Id: " + idMaterial + " | nazwa: " + name +  " | waga: " + size + " | ilość: " + amount + " | cena: " + price + " | idwarehouse: " + idWarehouse);
+    public String materialList(){
+        return ("Id: " + idMaterial + " | nazwa: " + name +  " | waga: " + size + " | ilość: " + amount + " | cena: " + price + " | idwarehouse: " + idWarehouse + "\n" );
     }
 
     public int getIdWarehouse() {

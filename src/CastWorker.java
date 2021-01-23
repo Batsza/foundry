@@ -118,13 +118,14 @@ public class CastWorker extends Worker {
         }
     }
 
-    public void showCastList(){
-        System.out.println("Lista odlewów: ");
+    public String showCastList(){
+        String text ="Lista odlewów: \n";
         for(int i = 1; i < numberOfCast+1; i++) {
             if(cast[i-1].getIdCast() > 0) {
-                cast[i - 1].castList();
+                text += cast[i - 1].castList();
             }
         }
+        return text;
     }
 
     public void loadCast() throws ClassNotFoundException, SQLException {
@@ -243,13 +244,15 @@ public class CastWorker extends Worker {
         }
     }
 
-    public void showProjectList(){
-        System.out.println("Lista projektów: ");
+    public String showProjectList(){
+
+        String text ="Lista projektów: \n";
         for(int i = 1; i < numberOfProject+1; i++) {
             if(project[i-1].getIdProject() > 0) {
-                project[i - 1].projectList();
+                text += project[i - 1].projectList();
             }
         }
+        return text;
     }
 
     public void loadProject() throws ClassNotFoundException, SQLException {
@@ -356,13 +359,15 @@ public class CastWorker extends Worker {
         }
     }
 
-    public void showFormList(){
-        System.out.println("Lista form: ");
+    public String showFormList(){
+
+        String text =("Lista projektów: \n");
         for(int i = 1; i < numberOfForm+1; i++) {
             if(form[i-1].getIdForm() > 0) {
-                form[i - 1].formList();
+                text+= form[i - 1].formList();
             }
         }
+        return text;
     }
 
     public void loadForm() throws ClassNotFoundException, SQLException {
@@ -391,13 +396,6 @@ public class CastWorker extends Worker {
 
         conn.close();
     }
-/*
-    public requestMaterials(){
 
-    }
-
-    public changeQuality(){
-
-    }*/
 }
 
