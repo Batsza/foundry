@@ -526,5 +526,26 @@ public class Controller {
       outputTextField.setText("podaj id cast ");
       changelocation=true;
    }
+   public void abortButtonHandler(){
+      textArea.setEditable(true);
+      textArea.clear();
+      inputTextField.clear();
+      outputTextField.clear();
+      textArea.setEditable(false);
+      addworker= false;
+      subworker= false;
+      addmaterial= false;
+      submaterial= false;
+      addproject= false;
+      subproject= false;
+      addform= false;
+      subform= false;
+      addcast= false;
+      subcast= false;
+      addwarehouse= false;
+      subwarehouse= false;
+      addtransport= false;
+      changelocation= false;
+   }
 
 }
