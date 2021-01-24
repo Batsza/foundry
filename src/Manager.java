@@ -11,19 +11,17 @@ public class Manager extends Worker {
 
     Scanner scan = new Scanner(System.in);
 
-    protected void addWorker() throws ClassNotFoundException, SQLException {
+    protected void addWorker(int id, int sekcja) throws ClassNotFoundException, SQLException {
         if(numberOfWorker == 0){
             for(int i = numberOfWorker; i < worker.length; i++) {
                 worker[i] = new Worker();
             }
         }
 
-        System.out.print("Podaj id pracownika: ");
-        Integer a = scan.nextInt();
-        worker[numberOfWorker].setIdWorker(a);
-        System.out.print("Podaj sekcje pracownika: ");
-        Integer b = scan.nextInt();
-        worker[numberOfWorker].setSection(b);
+
+        worker[numberOfWorker].setIdWorker(id);
+
+        worker[numberOfWorker].setSection(sekcja);
         if(numberOfWorker == 0){
             for(int i = numberOfWorker; i < worker.length; i++) {
                 worker[i] = new Worker();
@@ -55,13 +53,12 @@ public class Manager extends Worker {
         return text;
     }
 
-    protected void deleteWorker() throws ClassNotFoundException, SQLException {
-        System.out.print("Podaj id pracownika: ");
-        Integer c = scan.nextInt();
+    protected void deleteWorker(int id) throws ClassNotFoundException, SQLException {
+
         for(int i = 0; i < numberOfWorker; i++) {
-            if(worker[i].getIdWorker() == c){
+            if(worker[i].getIdWorker() == id){
                 worker[i] = new Worker();
-                System.out.println("Pracownik o id: " + c + " został usunięty");
+
             }
         }
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -71,7 +68,7 @@ public class Manager extends Worker {
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-        stmt.setInt(1, c);
+        stmt.setInt(1, id);
         stmt.executeUpdate();
 
         conn.close();
@@ -105,7 +102,7 @@ public class Manager extends Worker {
         Connection conn = DriverManager.getConnection(url, username, password);
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from worker");
-
+        numberOfWorker=0;
         while(rs.next()){
             worker[numberOfWorker].setIdWorker(rs.getInt(1));
             worker[numberOfWorker].setSection(rs.getInt(2));

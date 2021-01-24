@@ -9,20 +9,17 @@ public class LogisticWorker extends Worker {
     Material[] material = new Material[100];
     Scanner scan = new Scanner(System.in);
 
-    public void  addNewWarehouse() throws ClassNotFoundException, SQLException {
+    public void  addNewWarehouse(int id, int capacity) throws ClassNotFoundException, SQLException {
 
         if(numberOfWarehouse == 0){
             for(int i = numberOfWarehouse; i < warehouse.length; i++) {
                 warehouse[i] = new Warehouse();
             }
         }
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Podaj id magzynu: ");
-        Integer a = scan.nextInt();
-        warehouse[numberOfWarehouse].setIdWarehouse(a);
-        System.out.print("Podaj pojemnosc: ");
-        Integer b = scan.nextInt();
-        warehouse[numberOfWarehouse].setCapacity(b);
+
+        warehouse[numberOfWarehouse].setIdWarehouse(id);
+
+        warehouse[numberOfWarehouse].setCapacity(capacity);
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
@@ -40,13 +37,11 @@ public class LogisticWorker extends Worker {
         numberOfWarehouse++;
     }
 
-    protected void deleteWarehouse() throws ClassNotFoundException, SQLException {
-        System.out.print("Podaj id magazynu: ");
-        Integer c = scan.nextInt();
+    protected void deleteWarehouse(int id) throws ClassNotFoundException, SQLException {
+
         for(int i = 0; i < numberOfWarehouse; i++) {
-            if(warehouse[i].getIdWarehouse() == c){
+            if(warehouse[i].getIdWarehouse() == id){
                 warehouse[i] = new Warehouse();
-                System.out.println("Magazyn o id: " + c + " został usunięty");
             }
         }
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -56,7 +51,7 @@ public class LogisticWorker extends Worker {
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-        stmt.setInt(1, c);
+        stmt.setInt(1, id);
         stmt.executeUpdate();
 
         conn.close();
@@ -101,7 +96,7 @@ public class LogisticWorker extends Worker {
         Connection conn = DriverManager.getConnection(url, username, password);
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from warehouse");
-
+        numberOfWarehouse=0;
         while(rs.next()){
             warehouse[numberOfWarehouse].setIdWarehouse(rs.getInt(1));
             warehouse[numberOfWarehouse].setCapacity(rs.getInt(2));
@@ -111,7 +106,7 @@ public class LogisticWorker extends Worker {
         conn.close();
     }
 
-    public void  addNewMaterial() throws ClassNotFoundException, SQLException {
+    public void  addNewMaterial(int id, String name, int weight, int amount, int price, int idwarehouse  ) throws ClassNotFoundException, SQLException {
         Warehouse warehouseT = new Warehouse();
 
         if(numberOfMaterials == 0){
@@ -120,34 +115,28 @@ public class LogisticWorker extends Worker {
             }
         }
 
-        System.out.print("Podaj id materiału: ");
-        Integer a = scan.nextInt();
-        material[numberOfMaterials].setIdMaterial(a);
-        System.out.print("Podaj nazwę: ");
-        String b = scan.next();
-        material[numberOfMaterials].setName(b);
-        System.out.print("Podaj wagę: ");
-        Integer c = scan.nextInt();
-        material[numberOfMaterials].setSize(c);
-        System.out.print("Podaj ilosc: ");
-        Integer d = scan.nextInt();
-        material[numberOfMaterials].setAmount(d);
-        System.out.print("Podaj cenę: ");
-        Integer e = scan.nextInt();
-        material[numberOfMaterials].setPrice(e);
-        System.out.print("Podaj id magazynu: ");
-        Integer f = scan.nextInt();
-        material[numberOfMaterials].setIdWarehouse(f);
+
+        material[numberOfMaterials].setIdMaterial(id);
+
+        material[numberOfMaterials].setName(name);
+
+        material[numberOfMaterials].setSize(weight);
+
+        material[numberOfMaterials].setAmount(amount);
+
+        material[numberOfMaterials].setPrice(price);
+
+        material[numberOfMaterials].setIdWarehouse(idwarehouse);
         for (int i = 0; i < warehouse.length; i++){
 
-            if(warehouse[i].getIdWarehouse()== f && warehouse[i]!=null ){
+            if(warehouse[i].getIdWarehouse()== idwarehouse && warehouse[i]!=null ){
                 warehouseT = warehouse[i];
                 break;
             }
 
         }
         if(!calculateWarehouseCapacityM(material[numberOfMaterials],warehouseT)){
-            System.out.print("zamala pojemnosc");
+            //System.out.print("zamala pojemnosc");
         }
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
@@ -171,23 +160,22 @@ public class LogisticWorker extends Worker {
         numberOfMaterials++;
     }
 
-    protected void deleteMaterial() throws ClassNotFoundException, SQLException {
-        System.out.print("Podaj id materiału: ");
-        Integer c = scan.nextInt();
+    protected void deleteMaterial(int id) throws ClassNotFoundException, SQLException {
+
         for(int i = 0; i < numberOfMaterials; i++) {
-            if(material[i].getIdMaterial() == c){
+            if(material[i].getIdMaterial() == id){
                 material[i] = new Material();
-                System.out.println("Materiał o id: " + c + " został usunięty");
+
             }
         }
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
 
-        String sql = "DELETE FROM material where idmaterial = ?";
+        String sql = "DELETE FROM material where idmkaterial = ?";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-        stmt.setInt(1, c);
+        stmt.setInt(1, id);
         stmt.executeUpdate();
         //System.out.println(rs.getInt(1)+"  "+rs.getInt(2));
 
@@ -238,7 +226,7 @@ public class LogisticWorker extends Worker {
         Connection conn = DriverManager.getConnection(url, username, password);
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from MATERIAL");
-
+        numberOfMaterials=0;
         while(rs.next()){
             material[numberOfMaterials].setIdMaterial(rs.getInt(1));
             material[numberOfMaterials].setName(rs.getString(2));

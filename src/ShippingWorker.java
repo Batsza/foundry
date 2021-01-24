@@ -9,7 +9,7 @@ public class ShippingWorker extends Worker {
     Transport[] transports = new Transport[100];
     Scanner scan = new Scanner(System.in);
 
-    public void orderTransport() throws ClassNotFoundException, SQLException {
+    public void orderTransport(int id, int capacity, int weight, int idcast) throws ClassNotFoundException, SQLException {
         Cast castT = new Cast();
 
         if(numberOfTransport == 0){
@@ -19,22 +19,18 @@ public class ShippingWorker extends Worker {
         }
 
         Scanner scan = new Scanner(System.in);
-        System.out.print("Podaj id transportu: ");
-        Integer a = scan.nextInt();
-        transports[numberOfTransport].setIdTransport(a);
-        System.out.print("Podaj pojemnosc: ");
-        Integer b = scan.nextInt();
-        transports[numberOfTransport].setCapacity(b);
-        System.out.print("Podaj wage: ");
-        Integer c = scan.nextInt();
-        transports[numberOfTransport].setAvailableWeight(c);
-        System.out.print("Podaj id odlewu: ");
-        Integer e = scan.nextInt();
-        transports[numberOfTransport].setIdCast(e);
+
+        transports[numberOfTransport].setIdTransport(id);
+
+        transports[numberOfTransport].setCapacity(capacity);
+
+        transports[numberOfTransport].setAvailableWeight(weight);
+
+        transports[numberOfTransport].setIdCast(idcast);
 
         for (int i = 0; i <cast.length; i++){
 
-            if(cast[i].getIdCast()== e && cast[i]!=null ){
+            if(cast[i].getIdCast()== idcast && cast[i]!=null ){
                 castT = cast[i];
                 break;
             }
@@ -50,7 +46,7 @@ public class ShippingWorker extends Worker {
                     warehouse[i].setCastAmount(warehouse[i].getCastAmount() - castT.getAmount());
                     castT.setStatus("Wysłano");
                     for (int j = 0; j < cast.length; j++){
-                        if(cast[j].getIdCast()== e ){
+                        if(cast[j].getIdCast()== idcast ){
                             cast[j] = castT;
                         }
 
@@ -84,7 +80,7 @@ public class ShippingWorker extends Worker {
         //if(calculateWarehouseCapacityT(castT,)){}
     }
 
-    protected void deleteTransport() throws ClassNotFoundException, SQLException {
+    /*protected void deleteTransport() throws ClassNotFoundException, SQLException {
         System.out.print("Podaj id transportu: ");
         Integer c = scan.nextInt();
         for(int i = 0; i < numberOfTransport; i++) {
@@ -121,7 +117,7 @@ public class ShippingWorker extends Worker {
                 }
             }
         }
-    }
+    }*/
 
     public String showTransportList(){
 
@@ -146,7 +142,7 @@ public class ShippingWorker extends Worker {
         Connection conn = DriverManager.getConnection(url, username, password);
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from transport");
-
+        numberOfTransport=0;
         while(rs.next()){
             transports[numberOfTransport].setIdTransport(rs.getInt(1));
             transports[numberOfTransport].setCapacity(rs.getInt(2));

@@ -11,7 +11,7 @@ public class CastWorker extends Worker {
 
     Scanner scan = new Scanner(System.in);
 
-    public void  addNewCasting() throws ClassNotFoundException, SQLException {
+    public void  addNewCasting(int id, int amount, String quality, String state, int idproj, int idwarehouse) throws ClassNotFoundException, SQLException {
         Warehouse warehouseT = new Warehouse();
         if(numberOfCast == 0){
         for(int i = numberOfCast; i < cast.length; i++) {
@@ -19,34 +19,28 @@ public class CastWorker extends Worker {
         }
     }
     Scanner scan = new Scanner(System.in);
-        System.out.print("Podaj id odlewu: ");
-        Integer a = scan.nextInt();
-        cast[numberOfCast].setIdCast(a);
-        System.out.print("Podaj ilosc: ");
-        Integer b = scan.nextInt();
-        cast[numberOfCast].setAmount(b);
-        System.out.print("Podaj jakosc: ");
-        String c = scan.next();
-        cast[numberOfCast].setQuality(c);
-        System.out.print("Podaj status: ");
-        String d = scan.next();
-        cast[numberOfCast].setStatus(d);
-        System.out.print("Podaj id projektu: ");
-        int e = scan.nextInt();
-        cast[numberOfCast].setIdProject(e);
+
+        cast[numberOfCast].setIdCast(id);
+
+        cast[numberOfCast].setAmount(amount);
+
+        cast[numberOfCast].setQuality(quality);
+
+        cast[numberOfCast].setStatus(state);
+
+        cast[numberOfCast].setIdProject(idproj);
 
         for(int i = 0; i < numberOfProject; i++) {
-             if(project[i].getIdProject() == e){
+             if(project[i].getIdProject() == idproj){
                  cast[numberOfCast].setIdMaterial(project[i].getIdMaterial());
              };
         }
-        System.out.print("Podaj id magazynu: ");
-        int f = scan.nextInt();
-        cast[numberOfCast].setIdWarehouse(f);
+
+        cast[numberOfCast].setIdWarehouse(idwarehouse);
 
         for (int i = 0; i < warehouse.length; i++){
 
-            if(warehouse[i].getIdWarehouse()== f && warehouse[i]!=null ){
+            if(warehouse[i].getIdWarehouse()== idwarehouse && warehouse[i]!=null ){
                 warehouseT = warehouse[i];
                 break;
             }
@@ -77,13 +71,12 @@ public class CastWorker extends Worker {
         numberOfCast++;
     }
 
-    protected void deleteCast() throws ClassNotFoundException, SQLException {
-        System.out.print("Podaj id odlewu: ");
-        Integer c = scan.nextInt();
+    protected void deleteCast(int id) throws ClassNotFoundException, SQLException {
+
         for(int i = 0; i < numberOfCast; i++) {
-            if(cast[i].getIdCast() == c){
+            if(cast[i].getIdCast() == id){
                 cast[i] = new Cast();
-                System.out.println("Odlew o id: " + c + " został usunięty");
+
             }
         }
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -93,7 +86,7 @@ public class CastWorker extends Worker {
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-        stmt.setInt(1, c);
+        stmt.setInt(1, id);
         stmt.executeUpdate();
 
         conn.close();
@@ -142,7 +135,7 @@ public class CastWorker extends Worker {
         Connection conn = DriverManager.getConnection(url, username, password);
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from CAST");
-
+        numberOfCast=0;
         while(rs.next()){
             cast[numberOfCast].setIdCast(rs.getInt(1));
             cast[numberOfCast].setAmount(rs.getInt(2));
@@ -156,33 +149,25 @@ public class CastWorker extends Worker {
         conn.close();
     }
 
-    public void addNewProject() throws ClassNotFoundException, SQLException {
+    public void addNewProject(int id, int weight, int size, String desPrj, String desForm, int idmaterial) throws ClassNotFoundException, SQLException {
         if(numberOfProject == 0){
             for(int i = numberOfProject; i < project.length; i++) {
                 project[i] = new Project();
             }
         }
-        Scanner scan = new Scanner(System.in);
 
-        System.out.print("Podaj id projektu: ");
-        Integer a = scan.nextInt();
-        project[numberOfProject].setIdProject(a);
-        System.out.print("Podaj wage: ");
-        Integer b = scan.nextInt();
-        project[numberOfProject].setWeight(b);
-        System.out.print("Podaj wielkosc: ");
-        Integer c = scan.nextInt();
-        project[numberOfProject].setSize(c);
-        System.out.print("Podaj opis projektu: ");
-        scan.nextLine();
-        String d = scan.nextLine();
-        project[numberOfProject].setProjectDetails(d);
-        System.out.print("Podaj opis formy: ");
-        String e = scan.nextLine();
-        project[numberOfProject].setFormDetails(e);
-        System.out.println("Podaj id materiału");
-        int f = scan.nextInt();
-        project[numberOfProject].setIdMaterial(f);
+        project[numberOfProject].setIdProject(id);
+
+        project[numberOfProject].setWeight(weight);
+
+        project[numberOfProject].setSize(size);
+
+
+        project[numberOfProject].setProjectDetails(desPrj);
+
+        project[numberOfProject].setFormDetails(desForm);
+
+        project[numberOfProject].setIdMaterial(idmaterial);
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
@@ -203,13 +188,12 @@ public class CastWorker extends Worker {
         numberOfProject++;
     }
 
-    protected void deleteProject() throws ClassNotFoundException, SQLException {
-        System.out.print("Podaj id projektu: ");
-        Integer c = scan.nextInt();
+    protected void deleteProject(int id) throws ClassNotFoundException, SQLException {
+
         for(int i = 0; i < numberOfProject; i++) {
-            if(project[i].getIdProject() == c){
+            if(project[i].getIdProject() == id){
                 project[i] = new Project();
-                System.out.println("Projekt o id: " + c + " został usunięty");
+
             }
         }
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -219,7 +203,7 @@ public class CastWorker extends Worker {
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-        stmt.setInt(1, c);
+        stmt.setInt(1, id);
         stmt.executeUpdate();
 
         conn.close();
@@ -269,7 +253,7 @@ public class CastWorker extends Worker {
         Connection conn = DriverManager.getConnection(url, username, password);
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from project");
-
+        numberOfProject=0;
         while(rs.next()){
             project[numberOfProject].setIdProject(rs.getInt(1));
             project[numberOfProject].setWeight(rs.getInt(2));
@@ -283,26 +267,21 @@ public class CastWorker extends Worker {
         conn.close();
     }
 
-    public void addNewForm() throws ClassNotFoundException, SQLException {
+    public void addNewForm(int id, String type, int multiuse, int idproj ) throws ClassNotFoundException, SQLException {
         if(numberOfForm == 0){
             for(int i = numberOfForm; i < form.length; i++) {
                 form[i] = new Form();
             }
         }
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Podaj id formy: ");
-        Integer a = scan.nextInt();
-        form[numberOfForm].setIdForm(a);
-        System.out.print("Podaj typ: ");
-        String b = scan.next();
-        form[numberOfForm].setType(b);
-        System.out.print("Podaj możliwość urzyć : ");
-        Integer c = scan.nextInt();
-        form[numberOfForm].setMultiUse(c);
-        System.out.print("Podaj id projektu: ");
-        int d = scan.nextInt();
-        form[numberOfForm].setIdProject(d);
-        System.out.print("Pchdfghsadhgjkfhfkhljglk " + form[numberOfForm].getIdProject());
+
+        form[numberOfForm].setIdForm(id);
+
+        form[numberOfForm].setType(type);
+
+        form[numberOfForm].setMultiUse(multiuse);
+
+        form[numberOfForm].setIdProject(idproj);
+
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
 
@@ -320,13 +299,12 @@ public class CastWorker extends Worker {
         numberOfForm++;
     }
 
-    protected void deleteForm() throws ClassNotFoundException, SQLException {
-        System.out.print("Podaj id formy: ");
-        Integer c = scan.nextInt();
+    protected void deleteForm(int id) throws ClassNotFoundException, SQLException {
+
         for(int i = 0; i < numberOfForm; i++) {
-            if(form[i].getIdForm() == c){
+            if(form[i].getIdForm() == id){
                 form[i] = new Form();
-                System.out.println("Forma o id: " + c + " została usunięta");
+
             }
         }
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -336,7 +314,7 @@ public class CastWorker extends Worker {
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-        stmt.setInt(1, c);
+        stmt.setInt(1, id);
         stmt.executeUpdate();
 
         conn.close();
@@ -384,7 +362,7 @@ public class CastWorker extends Worker {
         Connection conn = DriverManager.getConnection(url, username, password);
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from form");
-
+        numberOfForm=0;
         while(rs.next()){
             form[numberOfForm].setIdForm(rs.getInt(1));
             form[numberOfForm].setType(rs.getString(2));

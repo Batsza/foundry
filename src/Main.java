@@ -1,13 +1,16 @@
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.stage.Stage;
 
 
 import java.sql.SQLException;
 import java.util.*;
 public class Main extends Application {
+
     @Override
     public void start(Stage stage) throws Exception {
         Stage window = stage;
@@ -15,6 +18,7 @@ public class Main extends Application {
         window.setTitle("admin");
         window.setScene(new Scene(admin, 1280, 720));
         window.show();
+
 
     }
 
@@ -27,7 +31,10 @@ public class Main extends Application {
         CastWorker cworker = new CastWorker();
         manager.loadWorker();
         lworker.loadMaterial();
-
+        lworker.loadWarehouse();
+        cworker.loadCast();
+        cworker.loadProject();
+        cworker.loadForm();
         Scanner scan = new Scanner(System.in);
 
 
@@ -35,7 +42,7 @@ public class Main extends Application {
 
 
         launch(args);
-        do {
+        /*do {
             System.out.println("Menu: ");
             System.out.println("1 - dodaj pracownika");
             System.out.println("2 - wyświetl pracowników");
@@ -62,7 +69,7 @@ public class Main extends Application {
             try {
                 switch (menu) {
                     case 1:
-                        manager.addWorker();
+                      //  manager.addWorker();
                         break;
                     case 2:
                         manager.showWorkersList();
@@ -127,7 +134,7 @@ public class Main extends Application {
                         System.exit(0);
                 }
             } catch(NumberFormatException e) {}
-        } while(true);
+        } while(true);*/
     }
 
 
