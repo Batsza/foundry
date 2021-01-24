@@ -3,12 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="25.0" layoutY="188.0" mnemonicParsing="false" prefWidth="120.0" text="Admin" />
-      <Button layoutX="175.0" layoutY="188.0" mnemonicParsing="false" prefWidth="120.0" text="Cast worker" />
-      <Button layoutX="325.0" layoutY="188.0" mnemonicParsing="false" prefWidth="120.0" text="Logistic worker" />
-      <Button layoutX="475.0" layoutY="188.0" mnemonicParsing="false" prefWidth="120.0" text="Shipping worker" />
+      <Button fx:id="loginAdminButton" layoutX="25.0" layoutY="188.0" mnemonicParsing="false" onAction="#loginAdminButtonHandler" prefWidth="120.0" text="Admin" />
+      <Button fx:id="loginCastWorkerButton" layoutX="175.0" layoutY="188.0" mnemonicParsing="false" onAction="#loginCastWorkerButtonHandler" prefWidth="120.0" text="Cast worker" />
+      <Button fx:id="loginLogisticWorkerButton" layoutX="325.0" layoutY="188.0" mnemonicParsing="false" onAction="#loginLogisticWorkerButtonHandler" prefWidth="120.0" text="Logistic worker" />
+      <Button fx:id="loginShippingWorkerButton" layoutX="475.0" layoutY="188.0" mnemonicParsing="false" onAction="#loginShippingWorkerButtonHandler" prefWidth="120.0" text="Shipping worker" />
    </children>
 </Pane>

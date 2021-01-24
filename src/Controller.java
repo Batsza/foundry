@@ -38,6 +38,35 @@ public class Controller {
    private TextArea textArea;
    @FXML
    private TextField outputTextField;
+
+   public void loginAdminButtonHandler(){
+      Parent admin = FXMLLoader.load(getClass().getResource("resources/admin.fxml"));
+      window.setTitle("admin");
+      window.setScene(new Scene(admin, 1280, 720));
+      window.show();
+   }
+
+   public void loginCastWorkerButtonHandler(){
+      Parent castWorker = FXMLLoader.load(getClass().getResource("resources/castWorker.fxml"));
+      window.setTitle("castWorker");
+      window.setScene(new Scene(castWorker, 1280, 720));
+      window.show();
+   }
+
+   public void loginLogisticWorkerButtonHandler(){
+      Parent logisticWorker = FXMLLoader.load(getClass().getResource("resources/logisticWorker.fxml"));
+      window.setTitle("logisticWorker");
+      window.setScene(new Scene(logisticWorker, 1280, 720));
+      window.show();
+   }
+
+   public void loginShippingWorkerButtonHandler(){
+      Parent shippingWorker = FXMLLoader.load(getClass().getResource("resources/shippingWorker.fxml"));
+      window.setTitle("shippingWorker");
+      window.setScene(new Scene(shippingWorker, 1280, 720));
+      window.show();
+   }
+
    public void submitButtonHandler() throws SQLException, ClassNotFoundException {
       textArea.setEditable(true);
       textArea.clear();

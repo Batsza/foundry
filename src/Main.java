@@ -14,9 +14,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Stage window = stage;
-        Parent admin = FXMLLoader.load(getClass().getResource("resources/admin.fxml"));
-        window.setTitle("admin");
-        window.setScene(new Scene(admin, 1280, 720));
+        Parent menu = FXMLLoader.load(getClass().getResource("resources/menu.fxml"));
+        window.setTitle("menu");
+        window.setScene(new Scene(menu, 1280, 720));
         window.show();
 
 
