@@ -176,7 +176,7 @@ public class LogisticWorker extends Worker {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
 
-        String sql = "DELETE FROM material where idmaterial = ?";
+        String sql = "DELETE FROM material where idmkaterial = ?";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
@@ -295,7 +295,6 @@ public class LogisticWorker extends Worker {
         castT.setIdWarehouse(idwarehouse);
 
     }
-
     public boolean addmaterialLock(int int1) {
         for(int i = 0; i < numberOfMaterials; i++){
             if(int1 == material[i].getIdMaterial()){
@@ -313,6 +312,7 @@ public class LogisticWorker extends Worker {
         }
         return false;
     }
+
     /*
     public showRequestMaterials(){
 

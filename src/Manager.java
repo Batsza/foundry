@@ -111,7 +111,6 @@ public class Manager extends Worker {
 
         conn.close();
     }
-
     public boolean addworkerLock(int int1) {
         for(int i = 0; i < numberOfWorker; i++){
             if(int1 == worker[i].getIdWorker()){

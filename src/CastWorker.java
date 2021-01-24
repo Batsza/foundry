@@ -375,7 +375,6 @@ public class CastWorker extends Worker {
 
         conn.close();
     }
-
     public boolean addprojectLock(int int1) {
         for(int i = 0; i < numberOfProject; i++){
             if(int1 == project[i].getIdMaterial()){

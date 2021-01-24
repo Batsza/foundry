@@ -1,36 +1,41 @@
 import javafx.fxml.FXML;
 
-
 import java.awt.*;
+import java.io.IOException;
 import java.sql.SQLException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-import javax.swing.plaf.synth.SynthOptionPaneUI;
+import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
 public class Controller {
    int int1 = 0;
-   int int2 = 0;
+   int int2 =0 ;
    int int3 = 0;
-   int int4 = 0;
+   int int4 =0 ;
    int int5 = 0;
    String text;
    String text2;
-   boolean addworker = false;
-   boolean subworker = false;
-   boolean addmaterial = false;
-   boolean submaterial = false;
-   boolean addproject = false;
-   boolean subproject = false;
-   boolean addform = false;
-   boolean subform = false;
-   boolean addcast = false;
-   boolean subcast = false;
-   boolean addwarehouse = false;
-   boolean subwarehouse = false;
-   boolean addtransport = false;
+   boolean addworker= false;
+   boolean subworker= false;
+   boolean addmaterial= false;
+   boolean submaterial= false;
+   boolean addproject= false;
+   boolean subproject= false;
+   boolean addform= false;
+   boolean subform= false;
+   boolean addcast= false;
+   boolean subcast= false;
+   boolean addwarehouse= false;
+   boolean subwarehouse= false;
+   boolean addtransport= false;
+   boolean changelocation= false;
+   int submitclick=0;
    boolean lock;
-   int submitclick = 0;
    Manager manager = new Manager();
    LogisticWorker lworker = new LogisticWorker();
    ShippingWorker sworker = new ShippingWorker();
@@ -41,6 +46,40 @@ public class Controller {
    private TextArea textArea;
    @FXML
    private TextField outputTextField;
+   @FXML
+   private  Button loginAdminButton, loginCastWorkerButton, loginLogisticWorkerButton,loginShippingWorkerButton;
+   public void loginAdminButtonHandler() throws IOException {
+
+     Parent admin = FXMLLoader.load(getClass().getResource("resources/admin.fxml"));
+      Stage window = (Stage) loginAdminButton.getScene().getWindow();
+      window.setTitle("admin");
+      window.setScene(new Scene(admin, 1280, 720));
+      window.show();
+   }
+
+   public void loginCastWorkerButtonHandler() throws IOException {
+      Parent castWorker = FXMLLoader.load(getClass().getResource("resources/castWorker.fxml"));
+      Stage window = (Stage) loginCastWorkerButton.getScene().getWindow();
+      window.setTitle("castWorker");
+      window.setScene(new Scene(castWorker, 1280, 720));
+      window.show();
+   }
+
+   public void loginLogisticWorkerButtonHandler() throws IOException {
+      Parent logisticWorker = FXMLLoader.load(getClass().getResource("resources/logisticWorker.fxml"));
+      Stage window = (Stage) loginLogisticWorkerButton.getScene().getWindow();
+      window.setTitle("logisticWorker");
+      window.setScene(new Scene(logisticWorker, 1280, 720));
+      window.show();
+   }
+
+   public void loginShippingWorkerButtonHandler() throws IOException {
+      Parent shippingWorker = FXMLLoader.load(getClass().getResource("resources/shippingWorker.fxml"));
+      Stage window = (Stage) loginShippingWorkerButton.getScene().getWindow();
+      window.setTitle("shippingWorker");
+      window.setScene(new Scene(shippingWorker, 1280, 720));
+      window.show();
+   }
 
    public void submitButtonHandler() throws SQLException, ClassNotFoundException {
       textArea.setEditable(true);
@@ -274,7 +313,7 @@ public class Controller {
       if (subform) { //delete form
          String text1 = inputTextField.getText();
          int1 = Integer.parseInt(text1);
-         lock = cworker.subprojectLock(int1);
+         lock = cworker.subformLock(int1);
          if (lock) {
             cworker.deleteForm(int1);
             textArea.setText("Forma o ID: " + int1 + " została usunięta");
@@ -439,18 +478,39 @@ public class Controller {
             inputTextField.clear();
          }
       }
-      textArea.setEditable(false);
-   }
 
-   public void addWorkerButtonHandler() {
+      if(changelocation){ // add worker
+         if (submitclick==0) {
+            String text1 = inputTextField.getText();
+            int1 = Integer.parseInt(text1);
+            outputTextField.setText("podaj id magazynu");
+            submitclick++;
+            inputTextField.clear();
+         }
+         else{
+
+            String text1 = inputTextField.getText();
+            int2 = Integer.parseInt(text1);
+            lworker.changeStorageLocation(int1, int2);
+            textArea.setText("Pomyślnie zmieniono");
+            submitclick = 0;
+            changelocation= false;
+            inputTextField.clear();
+         }
+
+      }
+      textArea.setEditable(false);
+
+   }
+   public void addWorkerButtonHandler() throws SQLException, ClassNotFoundException {
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       addworker=true;
    }
 
-   public void deleteWorkerButtonHandler() {
+   public void deleteWorkerButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       subworker=true;
    }
 
@@ -458,22 +518,20 @@ public class Controller {
       textArea.setEditable(true);
       textArea.clear();
       manager.loadWorker();
+
       textArea.setText(manager.showWorkersList());
       textArea.setEditable(false);
    }
-
    public void addMaterialButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       addmaterial=true;
    }
-
    public void deleteMaterialButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       submaterial=true;
    }
-
    public void showMaterialButtonHandler() throws SQLException, ClassNotFoundException {
       textArea.setEditable(true);
       textArea.clear();
@@ -481,19 +539,16 @@ public class Controller {
       textArea.setText(lworker.showMaterialList());
       textArea.setEditable(false);
    }
-
    public void addProjectButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       addproject=true;
    }
-
    public void deleteProjectButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       subproject=true;
    }
-
    public void showProjectButtonHandler() throws SQLException, ClassNotFoundException {
       textArea.setEditable(true);
       textArea.clear();
@@ -501,19 +556,16 @@ public class Controller {
       textArea.setText(cworker.showProjectList());
       textArea.setEditable(false);
    }
-
    public void addFormButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       addform=true;
    }
-
    public void deleteFormButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       subform=true;
    }
-
    public void showFormButtonHandler() throws SQLException, ClassNotFoundException {
       textArea.setEditable(true);
       textArea.clear();
@@ -521,19 +573,16 @@ public class Controller {
       textArea.setText(cworker.showFormList());
       textArea.setEditable(false);
    }
-
    public void addCastButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       addcast=true;
    }
-
    public void deleteCastButton(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       subcast=true;
    }
-
    public void showCastButtonHandler() throws SQLException, ClassNotFoundException {
       textArea.setEditable(true);
       textArea.clear();
@@ -541,19 +590,16 @@ public class Controller {
       textArea.setText(cworker.showCastList());
       textArea.setEditable(false);
    }
-
    public void addWarehouseButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       addwarehouse=true;
    }
-
    public void deleteWarehouseButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       subwarehouse=true;
    }
-
    public void showWarehouseButtonHandler() throws SQLException, ClassNotFoundException {
       textArea.setEditable(true);
       textArea.clear();
@@ -561,13 +607,11 @@ public class Controller {
       textArea.setText(lworker.showWarehouseList());
       textArea.setEditable(false);
    }
-
    public void addTransportButtonHandler(){
       textArea.clear();
-      outputTextField.setText("Podaj ID");
+      outputTextField.setText("podaj id");
       addtransport=true;
    }
-
    public void showTransportButtonHandler() throws SQLException, ClassNotFoundException {
       textArea.setEditable(true);
       textArea.clear();
@@ -575,4 +619,31 @@ public class Controller {
       textArea.setText(sworker.showTransportList());
       textArea.setEditable(false);
    }
+   public  void changeLocationHandler(){
+      textArea.clear();
+      outputTextField.setText("podaj id cast ");
+      changelocation=true;
+   }
+   public void abortButtonHandler(){
+      textArea.setEditable(true);
+      textArea.clear();
+      inputTextField.clear();
+      outputTextField.clear();
+      textArea.setEditable(false);
+      addworker= false;
+      subworker= false;
+      addmaterial= false;
+      submaterial= false;
+      addproject= false;
+      subproject= false;
+      addform= false;
+      subform= false;
+      addcast= false;
+      subcast= false;
+      addwarehouse= false;
+      subwarehouse= false;
+      addtransport= false;
+      changelocation= false;
+   }
+
 }

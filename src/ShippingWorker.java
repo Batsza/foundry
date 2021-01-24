@@ -172,7 +172,6 @@ public class ShippingWorker extends Worker {
 
         conn.close();
     }
-
     public boolean addwarehouseLock(int int1) {
         for(int i = 0; i < numberOfWarehouse; i++){
             if(int1 == warehouse[i].getIdWarehouse()){
@@ -199,7 +198,6 @@ public class ShippingWorker extends Worker {
         }
         return true;
     }
-
 /*
     public showRequestTransport(){
 
