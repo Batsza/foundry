@@ -47,7 +47,7 @@ public class Warehouse {
     }
 
     public String warehouseList(){
-        return ("Id: " + idWarehouse +/*" | ilosc odlewu: " + castAmount + " | ilosc materiału: " + materials +*/ " | pojemnosc: " + capacity + "\n");
+        return ("Id: " + idWarehouse +" | ilosc odlewu: " + castAmount + " | ilosc materiału: " + materials +" | pojemnosc: " + capacity + "\n");
     }
 /*
 

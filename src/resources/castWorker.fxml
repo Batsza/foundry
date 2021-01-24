@@ -6,29 +6,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<SplitPane dividerPositions="0.18018018018018017" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="446.0" prefWidth="193.0">
          <children>
             <Button fx:id="showMaterialButton" layoutX="23.0" layoutY="127.0" mnemonicParsing="false" onAction="#showMaterialButtonHandler" prefWidth="117.0" text="Show material" />
             <Button fx:id="addProjectButton" layoutX="23.0" layoutY="152.0" mnemonicParsing="false" onAction="#addProjectButtonHandler" prefWidth="117.0" text="Add project" />
-            <Button fx:id="deleteProjectButton" layoutX="23.0" layoutY="177.0" mnemonicParsing="false" onAction="#deleteProjectButtonHandler" prefWidth="117.0" text="Delete project" />
             <Button fx:id="showProjectButton" layoutX="23.0" layoutY="202.0" mnemonicParsing="false" onAction="#showProjectButtonHandler" prefWidth="117.0" text="Show project" />
             <Button fx:id="addFormButton" layoutX="23.0" layoutY="227.0" mnemonicParsing="false" onAction="#addFormButtonHandler" prefWidth="117.0" text="Add form" />
-            <Button fx:id="deleteFormButton" layoutX="23.0" layoutY="252.0" mnemonicParsing="false" onAction="#deleteFormButtonHandler" prefWidth="117.0" text="Delete form" />
             <Button fx:id="showFormButton" layoutX="23.0" layoutY="277.0" mnemonicParsing="false" onAction="#showFormButtonHandler" prefWidth="117.0" text="Show form" />
             <Button fx:id="addCastButton" layoutX="23.0" layoutY="302.0" mnemonicParsing="false" onAction="#addCastButtonHandler" prefWidth="117.0" text="Add cast" />
-            <Button fx:id="deleteCastButton" layoutX="23.0" layoutY="328.0" mnemonicParsing="false" onAction="#deleteCastButton" prefWidth="117.0" text="Delete cast" />
             <Button fx:id="showCastButton" layoutX="23.0" layoutY="353.0" mnemonicParsing="false" onAction="#showCastButtonHandler" prefWidth="117.0" text="Show cast" />
             <Button fx:id="showWarehouseButton" layoutX="23.0" layoutY="428.0" mnemonicParsing="false" onAction="#showWarehouseButtonHandler" prefWidth="117.0" text="Show warehouse" />
          </children>
       </AnchorPane>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="429.0" prefWidth="426.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="477.0">
          <children>
-            <TextArea fx:id="textArea" layoutX="16.0" layoutY="51.0" prefHeight="593.0" prefWidth="387.0" />
-            <TextField fx:id="inputTextField1" layoutX="182.0" layoutY="14.0" prefHeight="25.0" prefWidth="170.0" />
-            <TextField fx:id="outputTextField1" layoutX="12.0" layoutY="14.0" prefHeight="25.0" prefWidth="170.0" />
+            <TextArea fx:id="textArea" layoutX="16.0" layoutY="51.0" prefHeight="593.0" prefWidth="600.0" />
+            <TextField fx:id="inputTextField" layoutX="182.0" layoutY="14.0" prefHeight="25.0" prefWidth="170.0" />
+            <TextField fx:id="outputTextField" layoutX="12.0" layoutY="14.0" prefHeight="25.0" prefWidth="170.0" />
             <Button fx:id="submitButton" layoutX="352.0" layoutY="14.0" mnemonicParsing="false" onAction="#submitButtonHandler" text="Submit" />
+            <Button fx:id="abortButton" layoutX="406.0" layoutY="14.0" mnemonicParsing="false" onAction="#abortButtonHandler" text="Abort" />
          </children>
       </AnchorPane>
    </items>
