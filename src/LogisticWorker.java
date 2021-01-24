@@ -171,7 +171,7 @@ public class LogisticWorker extends Worker {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
 
-        String sql = "DELETE FROM material where idmkaterial = ?";
+        String sql = "DELETE FROM material where idmaterial = ?";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
@@ -202,7 +202,7 @@ public class LogisticWorker extends Worker {
     }
 
     public String showMaterialList(){
-        String text =("Materiały: ");
+        String text =("Materiały: \n");
         for(int i = 1; i < numberOfMaterials+1; i++) {
             if(material[i-1].getIdMaterial() > 0) {
                 text += material[i-1].materialList();
@@ -281,6 +281,23 @@ public class LogisticWorker extends Worker {
 
     }
 
+    public boolean addmaterialLock(int int1) {
+        for(int i = 0; i < numberOfMaterials; i++){
+            if(int1 == material[i].getIdMaterial()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean submaterialLock(int int1) {
+        for(int i = 0; i < numberOfMaterials; i++){
+            if(int1 == material[i].getIdMaterial()){
+                return true;
+            }
+        }
+        return false;
+    }
     /*
     public showRequestMaterials(){
 

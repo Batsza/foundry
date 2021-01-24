@@ -375,5 +375,58 @@ public class CastWorker extends Worker {
         conn.close();
     }
 
+    public boolean addprojectLock(int int1) {
+        for(int i = 0; i < numberOfProject; i++){
+            if(int1 == project[i].getIdMaterial()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean subprojectLock(int int1) {
+        for(int i = 0; i < numberOfProject; i++){
+            if(int1 == project[i].getIdMaterial()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean addformLock(int int1) {
+        for(int i = 0; i < numberOfForm; i++){
+            if(int1 == form[i].getIdForm()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean subformLock(int int1) {
+        for(int i = 0; i < numberOfForm; i++){
+            if(int1 == form[i].getIdForm()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean addcastLock(int int1) {
+        for(int i = 0; i < numberOfCast; i++){
+            if(int1 == cast[i].getIdCast()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean subcastLock(int int1) {
+        for(int i = 0; i < numberOfCast; i++){
+            if(int1 == cast[i].getIdCast()){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

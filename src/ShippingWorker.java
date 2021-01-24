@@ -153,6 +153,34 @@ public class ShippingWorker extends Worker {
 
         conn.close();
     }
+
+    public boolean addwarehouseLock(int int1) {
+        for(int i = 0; i < numberOfWarehouse; i++){
+            if(int1 == warehouse[i].getIdWarehouse()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean subwarehouseLock(int int1) {
+        for(int i = 0; i < numberOfWarehouse; i++){
+            if(int1 == warehouse[i].getIdWarehouse()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean addtransportLock(int int1) {
+        for(int i = 0; i < numberOfTransport; i++){
+            if(int1 == transports[i].getIdTransport()){
+                return false;
+            }
+        }
+        return true;
+    }
+
 /*
     public showRequestTransport(){
 
