@@ -30,8 +30,9 @@ public class CastWorker extends Worker {
 
         cast[numberOfCast].setIdProject(idproj);
 
-        for(int i = 0; i < numberOfProject; i++) {
+        for(int i = 0; i < project.length; i++) {
              if(project[i].getIdProject() == idproj){
+                 System.out.println(project[i].getIdMaterial());
                  cast[numberOfCast].setIdMaterial(project[i].getIdMaterial());
              };
         }

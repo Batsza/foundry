@@ -207,7 +207,7 @@ public class LogisticWorker extends Worker {
     }
 
     public String showMaterialList(){
-        String text =("Materiały: ");
+        String text =("Materiały: \n");
         for(int i = 1; i < numberOfMaterials+1; i++) {
             if(material[i-1].getIdMaterial() > 0) {
                 text += material[i-1].materialList();

@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class WorkerTest {
@@ -40,7 +42,7 @@ class WorkerTest {
     }
 
     @Test
-    void calculateWarehouseCapacityM() {
+    void calculateWarehouseCapacityM() throws SQLException, ClassNotFoundException {
         Material material = new Material(1, "gold", 10, 10, 1, 1 );
         Warehouse warehouse1 = new Warehouse(1,41,71,1000);
         assertTrue(Worker.calculateWarehouseCapacityM(material,warehouse1));
@@ -48,7 +50,7 @@ class WorkerTest {
     }
 
     @Test
-    void calculateWarehouseCapacity() {
+    void calculateWarehouseCapacity() throws SQLException, ClassNotFoundException {
         Cast cast1 = new Cast(1, "ok", 13, "true", 1, 1, 1);
         Project project1 = new Project(1, "opis projektu", "opis formy", 10, 20, 1);
         Worker.cast[0]= cast1;
