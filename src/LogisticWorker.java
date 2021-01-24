@@ -246,22 +246,20 @@ public class LogisticWorker extends Worker {
         conn.close();
     }
 
-    public void changeStorageLocation() throws SQLException, ClassNotFoundException {
+    public void changeStorageLocation(int idcast, int idwarehouse) throws SQLException, ClassNotFoundException {
         Cast castT = new Cast();
         Warehouse warehouseT = new Warehouse();
-        System.out.print("podaj id odlewu do zmiany: ");
-        Integer a = scan.nextInt();
-        System.out.print("podaj id magazynu docelowego: ");
-        Integer b = scan.nextInt();
+
+
 
         for (int i = 0; i < cast.length; i++) {
-            if (cast[i].getIdCast() == a && cast[i] != null) {
+            if (cast[i].getIdCast() == idcast && cast[i] != null) {
                 castT = cast[i];
                 break;
             }
         }
         for (int i = 0; i < warehouse.length; i++) {
-            if (warehouse[i].getIdWarehouse() == b && warehouse[i] != null) {
+            if (warehouse[i].getIdWarehouse() == idwarehouse && warehouse[i] != null) {
                 warehouseT = warehouse[i];
                 break;
             }
@@ -272,6 +270,18 @@ public class LogisticWorker extends Worker {
                 int castVolume = getCastSize(castT) * castT.getAmount();
                 warehouse[i].setCapacity(warehouse[i].getCapacity() + castVolume);
                 warehouse[i].setCastAmount(warehouse[i].getCastAmount() - castT.getAmount());
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                Connection conn = DriverManager.getConnection(url, username, password);
+
+                String sql = "UPDATE warehouse SET castamount=?, capacity= ?  where idwarehouse = ?";
+
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, warehouse[i].getCastAmount());
+                stmt.setInt(2, warehouse[i].getCapacity());
+                stmt.setInt(3, warehouse[i].getIdWarehouse());
+                stmt.executeUpdate();
+
+                conn.close();
                   break;
             }
 
@@ -282,7 +292,7 @@ public class LogisticWorker extends Worker {
         }
 
 
-        castT.setIdWarehouse(b);
+        castT.setIdWarehouse(idwarehouse);
 
     }
 

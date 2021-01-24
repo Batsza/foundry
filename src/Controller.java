@@ -33,6 +33,7 @@ public class Controller {
    boolean addwarehouse= false;
    boolean subwarehouse= false;
    boolean addtransport= false;
+   boolean changelocation= false;
    int submitclick=0;
    Manager manager = new Manager();
    LogisticWorker lworker = new LogisticWorker();
@@ -83,46 +84,44 @@ public class Controller {
       textArea.setEditable(true);
       textArea.clear();
 
-      if(addworker){ // add worker
-         if (submitclick==0) {
-               String text1 = inputTextField.getText();
-               int1 = Integer.parseInt(text1);
-               outputTextField.setText("podaj sekcje");
-               submitclick++;
-               inputTextField.clear();
-            }
-            else{
+      if (addworker) { // add worker
+         if (submitclick == 0) {
+            String text1 = inputTextField.getText();
+            int1 = Integer.parseInt(text1);
+            outputTextField.setText("podaj sekcje");
+            submitclick++;
+            inputTextField.clear();
+         } else {
 
-               String text1 = inputTextField.getText();
-               int2 = Integer.parseInt(text1);
-               manager.addWorker(int1, int2);
-               textArea.setText("Pomyślnie dodano" + int1 + " " + int2);
-               submitclick = 0;
-             addworker= false;
-             inputTextField.clear();
+            String text1 = inputTextField.getText();
+            int2 = Integer.parseInt(text1);
+            manager.addWorker(int1, int2);
+            textArea.setText("Pomyślnie dodano" + int1 + " " + int2);
+            submitclick = 0;
+            addworker = false;
+            inputTextField.clear();
          }
 
       }
-         if (subworker){
+      if (subworker) {
 
-               String text1 = inputTextField.getText();
-               int1 = Integer.parseInt(text1);
-               manager.deleteWorker(int1);
-               textArea.setText("Pracownik o id: " + int1 + " został usunięty");
-               subworker=false;
-               inputTextField.clear();
+         String text1 = inputTextField.getText();
+         int1 = Integer.parseInt(text1);
+         manager.deleteWorker(int1);
+         textArea.setText("Pracownik o id: " + int1 + " został usunięty");
+         subworker = false;
+         inputTextField.clear();
 
-         }
+      }
 
-      if(addmaterial){ // add material
-         if (submitclick==0) {
+      if (addmaterial) { // add material
+         if (submitclick == 0) {
             String text1 = inputTextField.getText();
             int1 = Integer.parseInt(text1);
             outputTextField.setText("podaj nazwe");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==1) {
+         } else if (submitclick == 1) {
 
             text = inputTextField.getText();
             outputTextField.setText("podaj wage");
@@ -130,59 +129,55 @@ public class Controller {
             inputTextField.clear();
 
 
-         }
-         else if(submitclick==2){
+         } else if (submitclick == 2) {
             String text1 = inputTextField.getText();
             int2 = Integer.parseInt(text1);
             outputTextField.setText("podaj ilosc");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==3){
+         } else if (submitclick == 3) {
             String text1 = inputTextField.getText();
             int3 = Integer.parseInt(text1);
             outputTextField.setText("podaj cene");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==4){
+         } else if (submitclick == 4) {
             String text1 = inputTextField.getText();
             int4 = Integer.parseInt(text1);
             outputTextField.setText("podaj id magazynu");
             submitclick++;
             inputTextField.clear();
-         }
-         else{
+         } else {
             String text1 = inputTextField.getText();
             int5 = Integer.parseInt(text1);
             lworker.addNewMaterial(int1, text, int2, int3, int4, int5);
-            textArea.setText("Pomyślnie  dodano" );
+            textArea.setText("Pomyślnie  dodano");
             submitclick = 0;
-            addmaterial= false;
+            addmaterial = false;
             inputTextField.clear();
          }
 
 
       }
-      if (submaterial){
+      if (submaterial) {
 
          String text1 = inputTextField.getText();
          int1 = Integer.parseInt(text1);
          lworker.deleteMaterial(int1);
-         textArea.setText("Materiał o id: " + int1 + " został usunięty");;
-         submaterial=false;
+         textArea.setText("Materiał o id: " + int1 + " został usunięty");
+         ;
+         submaterial = false;
          inputTextField.clear();
 
       }
-      if(addproject){ // add project
-         if (submitclick==0) {
+      if (addproject) { // add project
+         if (submitclick == 0) {
             String text1 = inputTextField.getText();
             int1 = Integer.parseInt(text1);
             outputTextField.setText("podaj wage");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==1) {
+         } else if (submitclick == 1) {
 
             String text1 = inputTextField.getText();
             int2 = Integer.parseInt(text1);
@@ -191,57 +186,53 @@ public class Controller {
             inputTextField.clear();
 
 
-         }
-         else if(submitclick==2){
+         } else if (submitclick == 2) {
             String text1 = inputTextField.getText();
             int3 = Integer.parseInt(text1);
             outputTextField.setText("podaj szczegoly projektu ");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==3){
+         } else if (submitclick == 3) {
             text = inputTextField.getText();
             outputTextField.setText("podaj szczegoly formy");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==4){
-             text2 = inputTextField.getText();
+         } else if (submitclick == 4) {
+            text2 = inputTextField.getText();
             outputTextField.setText("podaj id magazynu");
             submitclick++;
             inputTextField.clear();
-         }
-         else{
+         } else {
             String text1 = inputTextField.getText();
             int4 = Integer.parseInt(text1);
             cworker.addNewProject(int1, int2, int3, text, text2, int4);
-            textArea.setText("Pomyślnie  dodano" );
+            textArea.setText("Pomyślnie  dodano");
             submitclick = 0;
-            addproject= false;
+            addproject = false;
             inputTextField.clear();
          }
 
 
       }
-      if (subproject){
+      if (subproject) {
 
          String text1 = inputTextField.getText();
          int1 = Integer.parseInt(text1);
          cworker.deleteProject(int1);
-         textArea.setText("Project o id: " + int1 + " został usunięty");;
-         subproject=false;
+         textArea.setText("Project o id: " + int1 + " został usunięty");
+         ;
+         subproject = false;
          inputTextField.clear();
 
       }
-      if(addform){ // add form
-         if (submitclick==0) {
+      if (addform) { // add form
+         if (submitclick == 0) {
             String text1 = inputTextField.getText();
             int1 = Integer.parseInt(text1);
             outputTextField.setText("podaj typ");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==1) {
+         } else if (submitclick == 1) {
 
             text = inputTextField.getText();
             outputTextField.setText("podaj liczbe użyć");
@@ -249,155 +240,165 @@ public class Controller {
             inputTextField.clear();
 
 
-         }
-         else if(submitclick==2) {
+         } else if (submitclick == 2) {
             String text1 = inputTextField.getText();
             int2 = Integer.parseInt(text1);
             outputTextField.setText("podaj id warehouse ");
             submitclick++;
             inputTextField.clear();
-         }
-         else{
+         } else {
             String text1 = inputTextField.getText();
             int3 = Integer.parseInt(text1);
             cworker.addNewForm(int1, text, int2, int3);
-            textArea.setText("Pomyślnie  dodano" );
+            textArea.setText("Pomyślnie  dodano");
             submitclick = 0;
-            addform= false;
+            addform = false;
             inputTextField.clear();
          }
 
 
       }
-      if (subform){
+      if (subform) {
 
          String text1 = inputTextField.getText();
          int1 = Integer.parseInt(text1);
          cworker.deleteForm(int1);
-         textArea.setText("Forma o id: " + int1 + " został usunięty");;
-         subform=false;
+         textArea.setText("Forma o id: " + int1 + " został usunięty");
+         ;
+         subform = false;
          inputTextField.clear();
 
       }
-      if(addcast){ // add cast
-         if (submitclick==0) {
+      if (addcast) { // add cast
+         if (submitclick == 0) {
             String text1 = inputTextField.getText();
             int1 = Integer.parseInt(text1);
             outputTextField.setText("podaj ilosc");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==1) {
+         } else if (submitclick == 1) {
             String text1 = inputTextField.getText();
             int2 = Integer.parseInt(text1);
             outputTextField.setText("podaj jakosc");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==2) {
+         } else if (submitclick == 2) {
             text = inputTextField.getText();
             outputTextField.setText("podaj status ");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==3) {
+         } else if (submitclick == 3) {
             text2 = inputTextField.getText();
             outputTextField.setText("podaj id projektu ");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==4) {
+         } else if (submitclick == 4) {
             String text1 = inputTextField.getText();
             int3 = Integer.parseInt(text1);
             outputTextField.setText("podaj id magazynu ");
             submitclick++;
             inputTextField.clear();
-         }
-         else{
+         } else {
             String text1 = inputTextField.getText();
             int4 = Integer.parseInt(text1);
             cworker.addNewCasting(int1, int2, text, text2, int3, int4);
-            textArea.setText("Pomyślnie  dodano" );
+            textArea.setText("Pomyślnie  dodano");
             submitclick = 0;
-            addcast= false;
+            addcast = false;
             inputTextField.clear();
          }
 
 
       }
-      if (subcast){
+      if (subcast) {
 
          String text1 = inputTextField.getText();
          int1 = Integer.parseInt(text1);
          cworker.deleteCast(int1);
-         textArea.setText("odlew o id: " + int1 + " został usunięty");;
-         subcast=false;
+         textArea.setText("odlew o id: " + int1 + " został usunięty");
+         ;
+         subcast = false;
          inputTextField.clear();
 
       }
-      if(addwarehouse){ // add warehouse
-         if (submitclick==0) {
+      if (addwarehouse) { // add warehouse
+         if (submitclick == 0) {
             String text1 = inputTextField.getText();
             int1 = Integer.parseInt(text1);
             outputTextField.setText("podaj pojemność");
             submitclick++;
             inputTextField.clear();
-         }
-         else{
+         } else {
 
             String text1 = inputTextField.getText();
             int2 = Integer.parseInt(text1);
             lworker.addNewWarehouse(int1, int2);
             textArea.setText("Pomyślnie dodano" + int1 + " " + int2);
             submitclick = 0;
-            addwarehouse= false;
+            addwarehouse = false;
             inputTextField.clear();
          }
 
       }
-      if (subwarehouse){
+      if (subwarehouse) {
 
          String text1 = inputTextField.getText();
          int1 = Integer.parseInt(text1);
          lworker.deleteWarehouse(int1);
          textArea.setText("Pracownik o id: " + int1 + " został usunięty");
-         subwarehouse=false;
+         subwarehouse = false;
          inputTextField.clear();
 
       }
-      if(addtransport){ // add cast
-         if (submitclick==0) {
+      if (addtransport) { // add cast
+         if (submitclick == 0) {
             String text1 = inputTextField.getText();
             int1 = Integer.parseInt(text1);
             outputTextField.setText("podaj pojemnosc");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==1) {
+         } else if (submitclick == 1) {
             String text1 = inputTextField.getText();
             int2 = Integer.parseInt(text1);
             outputTextField.setText("podaj wage");
             submitclick++;
             inputTextField.clear();
-         }
-         else if(submitclick==2) {
+         } else if (submitclick == 2) {
             String text1 = inputTextField.getText();
             int3 = Integer.parseInt(text1);
             outputTextField.setText("podaj id cast ");
             submitclick++;
             inputTextField.clear();
          }
+       else {
+         String text1 = inputTextField.getText();
+         int4 = Integer.parseInt(text1);
+         sworker.orderTransport(int1, int2, int3, int4);
+         textArea.setText("Pomyślnie  dodano");
+         submitclick = 0;
+         addtransport = false;
+         inputTextField.clear();
+      }
+      }
 
-         else{
+      if(changelocation){ // add worker
+         if (submitclick==0) {
             String text1 = inputTextField.getText();
-            int4 = Integer.parseInt(text1);
-            sworker.orderTransport(int1, int2, int3, int4);
-            textArea.setText("Pomyślnie  dodano" );
-            submitclick = 0;
-            addtransport= false;
+            int1 = Integer.parseInt(text1);
+            outputTextField.setText("podaj id magazynu");
+            submitclick++;
             inputTextField.clear();
          }
+         else{
 
+            String text1 = inputTextField.getText();
+            int2 = Integer.parseInt(text1);
+            lworker.changeStorageLocation(int1, int2);
+            textArea.setText("Pomyślnie zmieniono");
+            submitclick = 0;
+            changelocation= false;
+            inputTextField.clear();
+         }
 
       }
       textArea.setEditable(false);
@@ -520,6 +521,10 @@ public class Controller {
       textArea.setText(sworker.showTransportList());
       textArea.setEditable(false);
    }
-   public  void changeLocationHandler(){}
+   public  void changeLocationHandler(){
+      textArea.clear();
+      outputTextField.setText("podaj id cast ");
+      changelocation=true;
+   }
 
 }
