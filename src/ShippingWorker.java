@@ -1,5 +1,5 @@
 import java.sql.*;
-import java.util.Scanner;
+
 
 public class ShippingWorker extends Worker {
     public static String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -7,7 +7,7 @@ public class ShippingWorker extends Worker {
     public static String password = "student";
     int numberOfTransport = 0;
     Transport[] transports = new Transport[100];
-    Scanner scan = new Scanner(System.in);
+
 
     public void orderTransport(int id, int capacity, int weight, int idcast) throws ClassNotFoundException, SQLException {
         Cast castT = new Cast();
@@ -18,7 +18,7 @@ public class ShippingWorker extends Worker {
             }
         }
 
-        Scanner scan = new Scanner(System.in);
+
 
         transports[numberOfTransport].setIdTransport(id);
 
@@ -45,6 +45,24 @@ public class ShippingWorker extends Worker {
                     warehouse[i].setCapacity(warehouse[i].getCapacity() + castVolume);
                     warehouse[i].setCastAmount(warehouse[i].getCastAmount() - castT.getAmount());
                     castT.setStatus("Wysłano");
+                    Class.forName("oracle.jdbc.driver.OracleDriver");
+                    Connection conn = DriverManager.getConnection(url, username, password);
+
+                    String sql = "UPDATE warehouse SET castamount=?, capacity= ?  where idwarehouse = ?";
+
+                    PreparedStatement stmt = conn.prepareStatement(sql);
+                    stmt.setInt(1, warehouse[i].getCastAmount());
+                    stmt.setInt(2, warehouse[i].getCapacity());
+                    stmt.setInt(3, warehouse[i].getIdWarehouse());
+                    stmt.executeUpdate();
+
+                    String sql2 = "UPDATE cast SET status=?  where idcast = ?";
+                    PreparedStatement stmt2 = conn.prepareStatement(sql2);
+                    stmt2.setString(1, castT.getStatus());
+                    stmt2.setInt(2, castT.getIdCast());
+                    stmt2.executeUpdate();
+
+                    conn.close();
                     for (int j = 0; j < cast.length; j++){
                         if(cast[j].getIdCast()== idcast ){
                             cast[j] = castT;
@@ -72,6 +90,7 @@ public class ShippingWorker extends Worker {
         stmt.setInt(2, transports[numberOfTransport].getCapacity());
         stmt.setInt(3, transports[numberOfTransport].getAvailableWeight());
         stmt.setInt(4, transports[numberOfTransport].getIdCast());
+
 
         stmt.executeUpdate();
         conn.close();

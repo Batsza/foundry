@@ -24,12 +24,14 @@ public class LogisticWorker extends Worker {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
 
-        String sql = "INSERT INTO warehouse" + " VALUES (?, ?)";
+        String sql = "INSERT INTO warehouse " + " VALUES (?, ?, ?, ?)";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setInt(1, warehouse[numberOfWarehouse].getIdWarehouse());
-        stmt.setInt(2, warehouse[numberOfWarehouse].getCapacity());
+        stmt.setInt(2, 0);
+        stmt.setInt(3, 0);
+        stmt.setInt(4, warehouse[numberOfWarehouse].getCapacity());
 
         stmt.executeUpdate();
         conn.close();
@@ -99,7 +101,10 @@ public class LogisticWorker extends Worker {
         numberOfWarehouse=0;
         while(rs.next()){
             warehouse[numberOfWarehouse].setIdWarehouse(rs.getInt(1));
-            warehouse[numberOfWarehouse].setCapacity(rs.getInt(2));
+            warehouse[numberOfWarehouse].setCastAmount(rs.getInt(2));
+            warehouse[numberOfWarehouse].setMaterials(rs.getInt(3));
+            warehouse[numberOfWarehouse].setCapacity(rs.getInt(4));
+
             numberOfWarehouse++;
         }
 
@@ -241,7 +246,7 @@ public class LogisticWorker extends Worker {
         conn.close();
     }
 
-    public void changeStorageLocation() {
+    public void changeStorageLocation() throws SQLException, ClassNotFoundException {
         Cast castT = new Cast();
         Warehouse warehouseT = new Warehouse();
         System.out.print("podaj id odlewu do zmiany: ");

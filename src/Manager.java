@@ -1,5 +1,5 @@
 import java.sql.*;
-import java.util.Scanner;
+
 
 public class Manager extends Worker {
 
@@ -9,7 +9,7 @@ public class Manager extends Worker {
     int numberOfWorker = 0;
     Worker[] worker = new Worker[100];
 
-    Scanner scan = new Scanner(System.in);
+
 
     protected void addWorker(int id, int sekcja) throws ClassNotFoundException, SQLException {
         if(numberOfWorker == 0){

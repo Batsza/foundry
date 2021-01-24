@@ -1,5 +1,5 @@
 import java.sql.*;
-import java.util.Scanner;
+
 
 public class CastWorker extends Worker {
     int numberOfProject = 0;
@@ -9,7 +9,7 @@ public class CastWorker extends Worker {
     public static String username = "c##student";
     public static String password = "student";
 
-    Scanner scan = new Scanner(System.in);
+
 
     public void  addNewCasting(int id, int amount, String quality, String state, int idproj, int idwarehouse) throws ClassNotFoundException, SQLException {
         Warehouse warehouseT = new Warehouse();
@@ -18,7 +18,7 @@ public class CastWorker extends Worker {
             cast[i] = new Cast();
         }
     }
-    Scanner scan = new Scanner(System.in);
+
 
         cast[numberOfCast].setIdCast(id);
 

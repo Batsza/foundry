@@ -1,4 +1,13 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
 public class Worker {
+    public static String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    public static String username = "c##student";
+    public static String password = "student";
     private int idWorker;
     private int section;
     static public Project[] project = new Project[100];
@@ -32,33 +41,57 @@ public class Worker {
 
     public String workerList(){return ("Id: " + idWorker + " | sekcja: " + section + "\n");}
 
-    static public boolean calculateWarehouseCapacity(Cast cast, Warehouse warehouse){
+    static public boolean calculateWarehouseCapacity(Cast cast, Warehouse warehouse) throws ClassNotFoundException, SQLException {
 
         int MaxCapacity = warehouse.getCapacity();
         int castAm = cast.getAmount();
         int castSe = getCastSize(cast);
         int castVolume = castAm * castSe;
         if(MaxCapacity < castVolume){
-            System.out.println("Nie udało się dodać odlewu, brak miejsca w magazynie!\n");
+
             return false;
         }
 
         warehouse.setCapacity(MaxCapacity-castVolume);
         warehouse.setCastAmount(warehouse.getCastAmount() + castAm);
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection conn = DriverManager.getConnection(url, username, password);
+
+        String sql = "UPDATE warehouse SET castamount=?, capacity= ?  where idwarehouse = ?";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, warehouse.getCastAmount());
+        stmt.setInt(2, warehouse.getCapacity());
+        stmt.setInt(3, warehouse.getIdWarehouse());
+        stmt.executeUpdate();
+
+        conn.close();
         return true;
     }
 
-    static public boolean calculateWarehouseCapacityM(Material material, Warehouse warehouse){
+    static public boolean calculateWarehouseCapacityM(Material material, Warehouse warehouse) throws SQLException, ClassNotFoundException {
         int MaxCapacity = warehouse.getCapacity();
         int materialAm = material.getAmount();
         int materialSe = material.getSize();
         int materialVolume = materialAm * materialSe;
         if(MaxCapacity < materialVolume){
-            System.out.println("Nie udało się dodać materiału, brak miejsca w magazynie!\n");
+
             return false;
         }
         warehouse.setCapacity(MaxCapacity-materialVolume);
         warehouse.setMaterials(warehouse.getMaterials() + materialAm);
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection conn = DriverManager.getConnection(url, username, password);
+
+        String sql = "UPDATE warehouse SET materials=?, capacity= ?  where idwarehouse = ?";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, warehouse.getMaterials());
+        stmt.setInt(2, warehouse.getCapacity());
+        stmt.setInt(3, warehouse.getIdWarehouse());
+        stmt.executeUpdate();
+
+        conn.close();
         return true;
     }
 
