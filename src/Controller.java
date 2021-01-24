@@ -1,10 +1,16 @@
 import javafx.fxml.FXML;
 
-
 import java.awt.*;
+import java.io.IOException;
 import java.sql.SQLException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
 public class Controller {
    int int1 = 0;
@@ -38,30 +44,36 @@ public class Controller {
    private TextArea textArea;
    @FXML
    private TextField outputTextField;
+   @FXML
+   private  Button loginAdminButton, loginCastWorkerButton, loginLogisticWorkerButton,loginShippingWorkerButton;
+   public void loginAdminButtonHandler() throws IOException {
 
-   public void loginAdminButtonHandler(){
-      Parent admin = FXMLLoader.load(getClass().getResource("resources/admin.fxml"));
+     Parent admin = FXMLLoader.load(getClass().getResource("resources/admin.fxml"));
+      Stage window = (Stage) loginAdminButton.getScene().getWindow();
       window.setTitle("admin");
       window.setScene(new Scene(admin, 1280, 720));
       window.show();
    }
 
-   public void loginCastWorkerButtonHandler(){
+   public void loginCastWorkerButtonHandler() throws IOException {
       Parent castWorker = FXMLLoader.load(getClass().getResource("resources/castWorker.fxml"));
+      Stage window = (Stage) loginCastWorkerButton.getScene().getWindow();
       window.setTitle("castWorker");
       window.setScene(new Scene(castWorker, 1280, 720));
       window.show();
    }
 
-   public void loginLogisticWorkerButtonHandler(){
+   public void loginLogisticWorkerButtonHandler() throws IOException {
       Parent logisticWorker = FXMLLoader.load(getClass().getResource("resources/logisticWorker.fxml"));
+      Stage window = (Stage) loginLogisticWorkerButton.getScene().getWindow();
       window.setTitle("logisticWorker");
       window.setScene(new Scene(logisticWorker, 1280, 720));
       window.show();
    }
 
-   public void loginShippingWorkerButtonHandler(){
+   public void loginShippingWorkerButtonHandler() throws IOException {
       Parent shippingWorker = FXMLLoader.load(getClass().getResource("resources/shippingWorker.fxml"));
+      Stage window = (Stage) loginShippingWorkerButton.getScene().getWindow();
       window.setTitle("shippingWorker");
       window.setScene(new Scene(shippingWorker, 1280, 720));
       window.show();
