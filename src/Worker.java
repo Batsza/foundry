@@ -3,7 +3,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 public class Worker {
     public static String url = "jdbc:oracle:thin:@localhost:1521:xe";
     public static String username = "c##student";
@@ -39,32 +38,33 @@ public class Worker {
         this.section = section;
     }
 
-    public String workerList(){return ("Id: " + idWorker + " | sekcja: " + section + "\n");}
+    public String workerList(){
+        return ("ID: " + idWorker + " | sekcja: " + section + "\n");
+    }
 
     static public boolean calculateWarehouseCapacity(Cast cast, Warehouse warehouse) throws ClassNotFoundException, SQLException {
-
         int MaxCapacity = warehouse.getCapacity();
         int castAm = cast.getAmount();
         int castSe = getCastSize(cast);
         int castVolume = castAm * castSe;
-        if(MaxCapacity < castVolume){
 
+        if(MaxCapacity < castVolume){
             return false;
         }
 
         warehouse.setCapacity(MaxCapacity-castVolume);
         warehouse.setCastAmount(warehouse.getCastAmount() + castAm);
+
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
-
         String sql = "UPDATE warehouse SET castamount=?, capacity= ?  where idwarehouse = ?";
-
         PreparedStatement stmt = conn.prepareStatement(sql);
+
         stmt.setInt(1, warehouse.getCastAmount());
         stmt.setInt(2, warehouse.getCapacity());
         stmt.setInt(3, warehouse.getIdWarehouse());
-        stmt.executeUpdate();
 
+        stmt.executeUpdate();
         conn.close();
         return true;
     }
@@ -74,54 +74,42 @@ public class Worker {
         int materialAm = material.getAmount();
         int materialSe = material.getSize();
         int materialVolume = materialAm * materialSe;
-        if(MaxCapacity < materialVolume){
 
+        if(MaxCapacity < materialVolume){
             return false;
         }
+
         warehouse.setCapacity(MaxCapacity-materialVolume);
         warehouse.setMaterials(warehouse.getMaterials() + materialAm);
+
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
-
         String sql = "UPDATE warehouse SET materials=?, capacity= ?  where idwarehouse = ?";
-
         PreparedStatement stmt = conn.prepareStatement(sql);
+
         stmt.setInt(1, warehouse.getMaterials());
         stmt.setInt(2, warehouse.getCapacity());
         stmt.setInt(3, warehouse.getIdWarehouse());
-        stmt.executeUpdate();
 
+        stmt.executeUpdate();
         conn.close();
         return true;
     }
 
-   /* static public boolean calculateWarehouseCapacityT(Cast cast, Transport transport){
-        int MaxCapacity = transport.getCapacity();
-        int MaxWeight = transport.getAvailableweight();
-        int castAm = cast.getAmount();
-        int castSe = getCastSize(cast);
-
-        int materialVolume = castAm * castSe;
-
-        if ()
-
-        warehouse.setCapacity(MaxCapacity-materialVolume);
-        warehouse.setCastAmount(warehouse.getCastAmount() - castAm);
-        return true;
-    }*/
-
-    public static int getCastSize(Cast cast){
+    public static int getCastSize(Cast cast) {
         for (int i = 0; i < project.length;i++){
-            if(project[i].getIdProject() == cast.getIdProject())
+            if (project[i].getIdProject() == cast.getIdProject()) {
                 return project[i].getSize();
+            }
         }
         return -1;
     }
 
-    public static int getCastWeight(Cast cast){
-        for (int i = 0; i < project.length;i++){
-            if(project[i].getIdProject() == cast.getIdProject())
+    public static int getCastWeight(Cast cast) {
+        for (int i = 0; i < project.length;i++) {
+            if (project[i].getIdProject() == cast.getIdProject()) {
                 return project[i].getWeight();
+            }
         }
         return -1;
     }

@@ -1,4 +1,3 @@
-
 public class Cast extends Project {
     private int idCast;
     private String status;
@@ -7,7 +6,7 @@ public class Cast extends Project {
     private int idWarehouse;
     private int idProject;
 
-    public Cast(){ }
+    public Cast(){}
 
     public Cast(int idCast, String status, int amount, String quality, int idMaterial, int idWarehouse,int idProject){
         this.setIdCast(idCast);
@@ -56,7 +55,7 @@ public class Cast extends Project {
     }
 
     public String castList(){
-        return ("Id: " + idCast + " | ilosc: " + amount + " | status: " + status + " | Id materiału: "+ idMaterial + " | Id magazynu: " + idWarehouse + " | jakosc: " + quality + "\n");
+        return ("ID: " + idCast + " | ilość: " + amount + " | status: " + status + " | ID materiału: "+ idMaterial + " | ID magazynu: " + idWarehouse + " | jakość: " + quality + "\n");
     }
 
     public int getIdWarehouse() {
@@ -74,25 +73,4 @@ public class Cast extends Project {
     public void setIdProject(int idProj) {
         this.idProject = idProj;
     }
-
-
-    /*
-    public void setData(int a, int b, int c){
-        this.idCast = a;
-        this.amount = b;
-        this.size =c;
-
-    }
-    public void projectList(){
-        System.out.println("Id: " + idCast);
-        System.out.println("Waga: " + amount);
-        System.out.println("wielkosc: " + size);
-    }
-    public showCastInformations(){
-
-    }
-
-    public static findCast(){
-
-    }*/
 }

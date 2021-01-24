@@ -38,8 +38,9 @@ public class Form {
     }
 
     public String formList(){
-        return ("Id: " + idForm +" | typ: " + type + " | ilość użyć : " + multiUse + "\n");
+        return ("ID: " + idForm + " | typ formy: " + type + " | ilość użyć: " + multiUse + "\n");
     }
+
     public int getIdProject() {
         return idProject;
     }

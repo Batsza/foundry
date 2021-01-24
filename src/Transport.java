@@ -1,4 +1,3 @@
-
 public class Transport {
     private int idTransport;
     private int capacity;
@@ -41,7 +40,7 @@ public class Transport {
     }
 
     public String transportList(){
-        return ("Id: " + idTransport + " | ilosc: " + capacity + " | waga: " + availableWeight + "\n");
+        return ("ID: " + idTransport + " | ilość: " + capacity + " | waga: " + availableWeight + "\n");
     }
 
     public int getIdCast() {
@@ -59,6 +58,5 @@ public class Transport {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
 }
 

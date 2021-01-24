@@ -6,9 +6,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<SplitPane dividerPositions="0.18222722159730034" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="446.0" prefWidth="193.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="163.0">
          <children>
             <Button fx:id="addWorkerButton" layoutX="23.0" layoutY="2.0" maxWidth="-Infinity" mnemonicParsing="false" onAction="#addWorkerButtonHandler" prefHeight="25.0" prefWidth="117.0" text="Add worker" />
             <Button fx:id="deleteWorkerButton" layoutX="23.0" layoutY="27.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteWorkerButtonHandler" prefWidth="117.0" text="Delete worker" />
@@ -30,13 +30,15 @@
             <Button fx:id="showWarehouseButton" layoutX="23.0" layoutY="428.0" mnemonicParsing="false" onAction="#showWarehouseButtonHandler" prefWidth="117.0" text="Show warehouse" />
             <Button fx:id="addTransportButton" layoutX="23.0" layoutY="453.0" mnemonicParsing="false" onAction="#addTransportButtonHandler" prefWidth="117.0" text="Add transport" />
             <Button fx:id="showTransportButton" layoutX="23.0" layoutY="478.0" mnemonicParsing="false" onAction="#showTransportButtonHandler" prefWidth="117.0" text="Show transport" />
+            <Button fx:id="changeLocation" layoutX="23.0" layoutY="503.0" mnemonicParsing="false" onAction="#changeLocationHandler" prefWidth="117.0" text="Change Location" />
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="429.0" prefWidth="426.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="497.0">
          <children>
-            <TextArea fx:id="textArea" layoutX="14.0" layoutY="63.0" prefHeight="593.0" prefWidth="387.0" />
+            <TextArea fx:id="textArea" layoutX="14.0" layoutY="63.0" prefHeight="593.0" prefWidth="600.0" />
             <TextField fx:id="inputTextField" layoutX="182.0" layoutY="26.0" prefHeight="25.0" prefWidth="170.0" />
             <TextField fx:id="outputTextField" layoutX="12.0" layoutY="26.0" prefHeight="25.0" prefWidth="170.0" />
             <Button fx:id="submitButton" layoutX="352.0" layoutY="26.0" mnemonicParsing="false" onAction="#submitButtonHandler" text="Submit" />
+            <Button fx:id="abortButton" layoutX="406.0" layoutY="26.0" mnemonicParsing="false" onAction="#abortButtonHandler" text="Abort" />
          </children></AnchorPane>
   </items>
 </SplitPane>

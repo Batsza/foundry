@@ -59,7 +59,7 @@ public class Material {
     }
 
     public String materialList(){
-        return ("Id: " + idMaterial + " | nazwa: " + name +  " | waga: " + size + " | ilość: " + amount + " | cena: " + price + " | idwarehouse: " + idWarehouse + "\n" );
+        return ("ID: " + idMaterial + " | nazwa: " + name +  " | waga: " + size + " | ilość: " + amount + " | cena: " + price + " | ID magazynu: " + idWarehouse + "\n" );
     }
 
     public int getIdWarehouse() {
@@ -69,14 +69,4 @@ public class Material {
     public void setIdWarehouse(int idWarehouse) {
         this.idWarehouse = idWarehouse;
     }
-/*
-    public showMaterialInformations(){
-
-    }
-
-    public static findMaterial(){
-
-    }
-
- */
 }

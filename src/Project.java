@@ -1,4 +1,3 @@
-
 public class Project {
     private int idProject;
     private String projectDetails;
@@ -6,6 +5,7 @@ public class Project {
     public int weight;
     private int size;
     protected int idMaterial;
+
     public Project(){}
 
     public Project(int idProj, String descProj, String descForm, int weight, int size, int idMaterial){
@@ -58,7 +58,7 @@ public class Project {
     }
 
     public String projectList(){
-        return("Id: " + idProject + " | Waga: " + weight + " | wielkosc: " + size + " | proj det: " + projectDetails + " | form det: " + formDetails + " | id materiału "+idMaterial + "\n");
+        return("ID: " + idProject + " | waga: " + weight + " | wielkość: " + size + " | informacje o projekcie: " + projectDetails + " | informacje o formie: " + formDetails + " | ID materiału: " + idMaterial + "\n");
     }
 
     public int getIdMaterial() {
@@ -68,13 +68,5 @@ public class Project {
     public void setIdMaterial(int idMaterial) {
         this.idMaterial = idMaterial;
     }
-/*
-    public showProjectInformations(){
-
-    }
-
-    public static findProject(){
-
-    }*/
 }
 

@@ -1,6 +1,5 @@
 import java.sql.*;
 
-
 public class CastWorker extends Worker {
     int numberOfProject = 0;
     int numberOfCast = 0;
@@ -9,56 +8,43 @@ public class CastWorker extends Worker {
     public static String username = "c##student";
     public static String password = "student";
 
-
-
     public void  addNewCasting(int id, int amount, String quality, String state, int idproj, int idwarehouse) throws ClassNotFoundException, SQLException {
         Warehouse warehouseT = new Warehouse();
         if(numberOfCast == 0){
-        for(int i = numberOfCast; i < cast.length; i++) {
-            cast[i] = new Cast();
+            for(int i = numberOfCast; i < cast.length; i++) {
+                cast[i] = new Cast();
+            }
         }
-    }
-
 
         cast[numberOfCast].setIdCast(id);
-
         cast[numberOfCast].setAmount(amount);
-
         cast[numberOfCast].setQuality(quality);
-
         cast[numberOfCast].setStatus(state);
-
         cast[numberOfCast].setIdProject(idproj);
-
         for(int i = 0; i < project.length; i++) {
-             if(project[i].getIdProject() == idproj){
-                 System.out.println(project[i].getIdMaterial());
-                 cast[numberOfCast].setIdMaterial(project[i].getIdMaterial());
-             };
+            if(project[i].getIdProject() == idproj){
+                System.out.println(project[i].getIdMaterial());
+                cast[numberOfCast].setIdMaterial(project[i].getIdMaterial());
+            }
         }
 
         cast[numberOfCast].setIdWarehouse(idwarehouse);
 
-        for (int i = 0; i < warehouse.length; i++){
-
+        for (int i = 0; i < warehouse.length; i++) {
             if(warehouse[i].getIdWarehouse()== idwarehouse && warehouse[i]!=null ){
                 warehouseT = warehouse[i];
                 break;
             }
-
         }
 
         if(!calculateWarehouseCapacity(cast[numberOfCast],warehouseT)) {
-            System.out.print("zamala pojemnosc");
+            System.out.print("Za mala pojemnosc");
         }
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
-
         String sql = "INSERT INTO cast" + " VALUES (?, ?, ?, ?, ?, ?)";
-
         PreparedStatement stmt = conn.prepareStatement(sql);
-
 
         stmt.setInt(1, cast[numberOfCast].getIdCast());
         stmt.setInt(2, cast[numberOfCast].getAmount());
@@ -73,24 +59,21 @@ public class CastWorker extends Worker {
     }
 
     protected void deleteCast(int id) throws ClassNotFoundException, SQLException {
-
         for(int i = 0; i < numberOfCast; i++) {
             if(cast[i].getIdCast() == id){
                 cast[i] = new Cast();
-
             }
         }
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
-
         String sql = "DELETE FROM cast where idcast = ?";
-
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setInt(1, id);
-        stmt.executeUpdate();
 
+        stmt.executeUpdate();
         conn.close();
+
         numberOfCast--;
         repairArrayObjectCast();
     }
@@ -123,9 +106,6 @@ public class CastWorker extends Worker {
     }
 
     public void loadCast() throws ClassNotFoundException, SQLException {
-        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        String username = "c##student";
-        String password = "student";
         if(numberOfCast == 0){
             for(int i = numberOfCast; i < cast.length; i++) {
                 cast[i] = new Cast();
@@ -136,7 +116,8 @@ public class CastWorker extends Worker {
         Connection conn = DriverManager.getConnection(url, username, password);
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from CAST");
-        numberOfCast=0;
+        numberOfCast = 0;
+
         while(rs.next()){
             cast[numberOfCast].setIdCast(rs.getInt(1));
             cast[numberOfCast].setAmount(rs.getInt(2));
@@ -146,7 +127,6 @@ public class CastWorker extends Worker {
             cast[numberOfCast].setIdWarehouse(rs.getInt(6));
             numberOfCast++;
         }
-
         conn.close();
     }
 
@@ -156,25 +136,16 @@ public class CastWorker extends Worker {
                 project[i] = new Project();
             }
         }
-
         project[numberOfProject].setIdProject(id);
-
         project[numberOfProject].setWeight(weight);
-
         project[numberOfProject].setSize(size);
-
-
         project[numberOfProject].setProjectDetails(desPrj);
-
         project[numberOfProject].setFormDetails(desForm);
-
         project[numberOfProject].setIdMaterial(idmaterial);
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
-
         String sql = "INSERT INTO project" + " VALUES (?, ?, ?, ?, ?, ?)";
-
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setInt(1, project[numberOfProject].getIdProject());
@@ -190,24 +161,22 @@ public class CastWorker extends Worker {
     }
 
     protected void deleteProject(int id) throws ClassNotFoundException, SQLException {
-
         for(int i = 0; i < numberOfProject; i++) {
             if(project[i].getIdProject() == id){
                 project[i] = new Project();
-
             }
         }
+
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
-
         String sql = "DELETE FROM project where idproject = ?";
-
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setInt(1, id);
-        stmt.executeUpdate();
 
+        stmt.executeUpdate();
         conn.close();
+
         numberOfCast--;
         repairArrayObjectProject();
     }
@@ -230,7 +199,6 @@ public class CastWorker extends Worker {
     }
 
     public String showProjectList(){
-
         String text ="Lista projektów: \n";
         for(int i = 1; i < numberOfProject+1; i++) {
             if(project[i-1].getIdProject() > 0) {
@@ -241,9 +209,6 @@ public class CastWorker extends Worker {
     }
 
     public void loadProject() throws ClassNotFoundException, SQLException {
-        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        String username = "c##student";
-        String password = "student";
         if(numberOfProject == 0){
             for(int i = numberOfProject; i < project.length; i++) {
                 project[i] = new Project();
@@ -255,6 +220,7 @@ public class CastWorker extends Worker {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from project");
         numberOfProject=0;
+
         while(rs.next()){
             project[numberOfProject].setIdProject(rs.getInt(1));
             project[numberOfProject].setWeight(rs.getInt(2));
@@ -274,20 +240,14 @@ public class CastWorker extends Worker {
                 form[i] = new Form();
             }
         }
-
         form[numberOfForm].setIdForm(id);
-
         form[numberOfForm].setType(type);
-
         form[numberOfForm].setMultiUse(multiuse);
-
         form[numberOfForm].setIdProject(idproj);
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
-
         String sql = "INSERT INTO form" + " VALUES (?, ?, ?, ?)";
-
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setInt(1, form[numberOfForm].getIdForm());
@@ -301,7 +261,6 @@ public class CastWorker extends Worker {
     }
 
     protected void deleteForm(int id) throws ClassNotFoundException, SQLException {
-
         for(int i = 0; i < numberOfForm; i++) {
             if(form[i].getIdForm() == id){
                 form[i] = new Form();
@@ -310,14 +269,12 @@ public class CastWorker extends Worker {
         }
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection conn = DriverManager.getConnection(url, username, password);
-
         String sql = "DELETE FROM form where idform = ?";
-
         PreparedStatement stmt = conn.prepareStatement(sql);
 
         stmt.setInt(1, id);
-        stmt.executeUpdate();
 
+        stmt.executeUpdate();
         conn.close();
         numberOfForm--;
         repairArrayObjectForm();
@@ -339,7 +296,6 @@ public class CastWorker extends Worker {
     }
 
     public String showFormList(){
-
         String text =("Lista projektów: \n");
         for(int i = 1; i < numberOfForm+1; i++) {
             if(form[i-1].getIdForm() > 0) {
@@ -350,9 +306,6 @@ public class CastWorker extends Worker {
     }
 
     public void loadForm() throws ClassNotFoundException, SQLException {
-        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        String username = "c##student";
-        String password = "student";
         if(numberOfForm == 0){
             for(int i = numberOfForm; i < form.length; i++) {
                 form[i] = new Form();
@@ -364,17 +317,18 @@ public class CastWorker extends Worker {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from form");
         numberOfForm=0;
+
         while(rs.next()){
             form[numberOfForm].setIdForm(rs.getInt(1));
             form[numberOfForm].setType(rs.getString(2));
             form[numberOfForm].setMultiUse(rs.getInt(3));
             form[numberOfForm].setIdProject(rs.getInt(4));
-
             numberOfForm++;
         }
 
         conn.close();
     }
+
     public boolean addprojectLock(int int1) {
         for(int i = 0; i < numberOfProject; i++){
             if(int1 == project[i].getIdMaterial()){
