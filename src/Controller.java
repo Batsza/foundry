@@ -164,7 +164,7 @@ public class Controller {
             String text1 = inputTextField.getText();
             int5 = Integer.parseInt(text1);
             lworker.addNewMaterial(int1, text, int2, int3, int4, int5);
-            textArea.setText("Pomyślnie  dodano materiał" );
+            textArea.setText("Pomyślnie dodano materiał" );
             submitclick = 0;
             addmaterial = false;
             inputTextField.clear();
@@ -348,14 +348,14 @@ public class Controller {
          } else if (submitclick == 4) {
             String text1 = inputTextField.getText();
             int3 = Integer.parseInt(text1);
-            outputTextField.setText("podaj id magazynu ");
+            outputTextField.setText("Podaj ID magazynu");
             submitclick++;
             inputTextField.clear();
          } else {
             String text1 = inputTextField.getText();
             int4 = Integer.parseInt(text1);
             cworker.addNewCasting(int1, int2, text, text2, int3, int4);
-            textArea.setText("Pomyślnie  dodano");
+            textArea.setText("Pomyślnie dodano odlew");
             submitclick = 0;
             addcast = false;
             inputTextField.clear();
@@ -400,7 +400,7 @@ public class Controller {
             String text1 = inputTextField.getText();
             int2 = Integer.parseInt(text1);
             lworker.addNewWarehouse(int1, int2);
-            textArea.setText("Pomyślnie dodano" + int1 + " " + int2);
+            textArea.setText("Pomyślnie dodano magazyn");
             submitclick = 0;
             addwarehouse = false;
             inputTextField.clear();
@@ -468,7 +468,7 @@ public class Controller {
          if (submitclick==0) {
             String text1 = inputTextField.getText();
             int1 = Integer.parseInt(text1);
-            outputTextField.setText("podaj id magazynu");
+            outputTextField.setText("Podaj ID magazynu");
             submitclick++;
             inputTextField.clear();
          } else {
